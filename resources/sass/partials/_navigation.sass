@@ -1,0 +1,113 @@
+// Navigation style
+.navigation
+    padding: 1.5rem 0
+    &__link
+        font-size: 1rem
+        font-weight: 400
+        color: #404040
+        margin-left: 0.75rem
+        position: relative
+        transition: all ease 0.25s
+        &:after
+            content: ' '
+            position: absolute
+            bottom: -0.75rem
+            left: 0
+            width: 100%
+            max-width: 0
+            height: 3px
+            background-color: $blue
+            transition: all ease 0.25s
+        &:hover:after, &.active
+            max-width: 1.5rem
+
+    // user block
+    &__user
+        position: relative
+    &__name
+        cursor: pointer
+        & span 
+            font-size: 1rem
+            font-weight: 500
+            color: #000000
+            text-align: right
+    &__avatar
+        & img
+            max-width: 3.5rem
+            border-radius: 35px
+    
+    // submenu
+    &__submenu
+        position: absolute
+        display: none
+        padding: 0.75rem 1rem
+        border: 1px solid $blue
+        background-color: #ffffff
+        z-index: 2
+        min-width: 13rem
+        right: 0
+        border-radius: 15px
+        &.is-opened
+            display: block
+        & hr 
+            margin: 0.25rem 0
+    &__submenu-item
+        margin: 0.25rem 0
+    &__submenu-link
+        font-size: 0.875rem
+        font-weight: 400
+
+    // burger
+    &__burger
+        & span 
+            height: 3px
+            width: 1.75rem
+            background-color: $blue
+            display: block
+            margin: 6px 0
+
+.logo
+    padding: 1.125rem 0.625rem
+    border-radius: 15px
+    background-color: $orange
+    font-size: 1.25rem
+    font-weight: 700
+    color: #ffffff
+    display: inline-block
+    &:hover 
+        color: #ffffff
+
+
+// footer style
+.footer
+    background-color: #f7f8f8
+    padding: 2rem 0
+    &__info, &__info a, &__info p
+        color: #404040
+        margin-bottom: 0.125rem
+        & a 
+            text-decoration: underline
+            &:hover 
+                color: $orange
+    
+// footer social
+.social
+    &__list
+        display: flex
+    &__item
+        border: 1px solid #000000
+        color: #000000
+        display: flex
+        width: 1.5rem
+        height: 1.5rem
+        font-size: 0.75rem
+        justify-content: center
+        justify-items: center
+        align-content: center
+        align-items: center
+        border-radius: 25px
+        margin-left: 0.5rem
+        &:hover
+            background-color: $orange
+            color: #ffffff
+            border: 1px solid $orange

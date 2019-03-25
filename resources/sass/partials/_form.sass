@@ -1,0 +1,124 @@
+/** 
+ * Custom form style (blue color and animation label)
+ */
+
+.custom-checkbox
+    & .form-check
+        padding-left: 0
+    & label 
+        color: #bababa
+        font-size: 0.75rem
+        position: relative
+        padding-left: 1.5rem
+        &:after
+            content: ' '
+            position: absolute
+            top: 0
+            left: 0
+            width: 0.875rem
+            height: 0.875rem
+            padding: 0.25rem
+            border: 1px solid #cccccc
+            border-radius: 4px
+    & input[type='checkbox']:checked + label:after
+        background-image: url('../images/general/checkbox.svg')
+        background-repeat: no-repeat
+        background-size: 0.5rem 0.5rem
+        background-position: center center
+        border: 1px solid $blue
+
+    & input[type='checkbox']
+        position: absolute
+        left: -9999px
+
+.custom-input 
+    margin-bottom: 1.5rem
+    input
+        border-radius: 0
+        border: 0
+        border-bottom: 1px solid #cccccc
+        outline: none
+        color: $blue
+        font-size: 0.75rem
+        font-weight: 500
+        padding-left: 0.5rem
+        &:hover, &:focus
+            box-shadow: none
+            border-bottom: 1px solid $blue
+    & .invalid-feedback
+        font-size: 0.75rem
+
+/**
+ * Powered by: https://github.com/tonystar/float-label-css
+ */
+
+@mixin float-label-container 
+    display: block
+    position: relative
+
+@mixin float-label 
+    label
+        position: absolute
+        left: 0
+        top: -0.325rem
+        cursor: text
+        font-size: 0.675rem
+        font-weight: 500
+        color: $blue
+        opacity: 1
+        transition: all .2s
+        @content
+
+@mixin float-label-input 
+    &::placeholder 
+        opacity: 1
+        transition: all .2s
+  
+    &:placeholder-shown:not(:focus)::placeholder 
+        opacity: 0
+  
+@mixin float-label-scaled 
+    &:placeholder-shown:not(:focus) + * 
+        font-size: 0.75rem
+        margin-top: 0.375rem
+        font-weight: 500
+        color: $blue
+        opacity: 1
+        @content
+  
+
+// 
+.custom-input
+    @include float-label-container
+
+    @include float-label
+
+    select 
+        -webkit-appearance: none
+        -moz-appearance: none
+        appearance: none
+  
+    textarea 
+        width: 100%
+  
+    input, select, textarea 
+        @include float-label-input
+        font-size: 0.75rem
+        font-weight: 500
+        padding-top: 1em
+        margin-bottom: 2px
+        border-radius: 0
+        //border-bottom: 2px solid rgba(0,0,0,.1)
+        color: #000000
+
+        @include float-label-scaled 
+            top: .25em
+
+        &:focus 
+            outline: none
+            //border-color: rgba(0,0,0,.5)
+    
+    select 
+        padding-right: 1em
+        background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right .5em bottom .25em
+        background-size: 8px 10px
