@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row align-items-center justify-content-center justify-content-lg-between">
             <div class="col-12 col-md-8 col-lg-6 mb-5">
-                <img src="images/auth/register.png" alt="">
+                <img src="{{ asset('images/auth/register.png') }}" alt="">
             </div>
             <div class="col-12 col-md-8 col-lg-5 ml-lg-auto">
                 <div class="auth__title">Сделайте первый шаг!</div>

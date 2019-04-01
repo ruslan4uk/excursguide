@@ -1,47 +1,47 @@
 @extends('layouts.auth')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+<section class="auth mt-md-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-8 col-lg-6 mb-5">
+                    <img src=" {{ asset('images/auth/login.png') }}" alt="">
+                </div>
+                <div class="col-12 col-md-8 col-lg-5 ml-lg-auto">
+                    <div class="auth__title">Смена пароля</div>
+                    <div class="auth__subtitle">Ссылка для смены пароля придет на почту</div>
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
+                    <div class="auth__form mt-3 mt-md-4">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
+                        <form method="POST" action="{{ route('password.email') }}">
+                            @csrf
+                            <div class="form-group custom-input">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="example@mail.ru" required>
+                                <label for="email">Введите Ваш Email адрес</label>
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
+    
+                            <div class="form-group custom-input">
+                                <button type="submit" class="btn btn-md btn-blue auth__btn">
+                                    Сменить пароль
                                 </button>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+
 @endsection

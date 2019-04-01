@@ -9815,6 +9815,40 @@ img {
   color: #ffffff;
 }
 
+.btn-small {
+  padding: 0.375rem 1.25rem;
+  font-size: 0.875rem;
+}
+
+.alert {
+  border-radius: 25px;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+.alert-success {
+  background-color: #edf3ef;
+}
+
+.card {
+  border: 0;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.card-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.card-title-small {
+  color: #c0c0c0;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
 /** 
  * * Custom form style (blue color and animation label)
  * */
@@ -9849,14 +9883,25 @@ img {
   position: absolute;
   left: -9999px;
 }
+.custom-checkbox--profile {
+  display: inline-block;
+}
+.custom-checkbox--profile label {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #405089;
+}
+.custom-checkbox--profile label:after {
+  top: 1px;
+}
 
 .custom-input {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 .custom-input input {
   border-radius: 0;
   border: 0;
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid #eeeeee;
   outline: none;
   color: #405089;
   font-size: 0.75rem;
@@ -9866,6 +9911,9 @@ img {
 .custom-input input:hover, .custom-input input:focus {
   box-shadow: none;
   border-bottom: 1px solid #405089;
+}
+.custom-input textarea {
+  border-radius: 25px !important;
 }
 .custom-input .invalid-feedback {
   font-size: 0.75rem;
@@ -9881,7 +9929,7 @@ img {
 .custom-input label {
   position: absolute;
   left: 0;
-  top: -0.325rem;
+  top: -0.5rem;
   cursor: text;
   font-size: 0.675rem;
   font-weight: 500;
@@ -10101,10 +10149,22 @@ img {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
+.auth__forgot-password {
+  font-size: 0.75rem;
+  color: #bababa;
+  border-bottom: 1px dashed #bababa;
+  transition: all ease 0.2s;
+}
+.auth__forgot-password:hover {
+  border-color: #405089;
+}
 .auth__social span {
   font-size: 0.75rem;
   color: #405089;
   font-weight: 500;
+}
+.auth .custom-input {
+  margin-bottom: 1.5rem;
 }
 
 .tour-item {
@@ -10145,4 +10205,29 @@ img {
 }
 .tour-item__price span.rubl {
   font-size: 0.875rem;
+}
+
+.profile__avatar {
+  flex: 0 0 6.5rem;
+}
+.profile__avatar img {
+  border-radius: 50%;
+}
+.profile__avatar-upload {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #405089;
+  transition: all ease 0.2s;
+  border-bottom: 1px solid transparent;
+}
+.profile__avatar-upload:hover {
+  border-bottom: 1px solid #405089;
+}
+.profile__avatar-uploader {
+  position: absolute;
+  left: -9999px;
+}
+.profile__username {
+  font-size: 1.5rem;
+  font-weight: 500;
 }

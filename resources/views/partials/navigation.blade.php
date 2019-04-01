@@ -1,12 +1,12 @@
 <section class="navigation">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-6">
+            <div class="col-4 col-md-6">
                 <a href="/" class="logo mr-md-5">EG</a>
                 <a href="" class="navigation__link d-none d-md-inline">О нас</a>
                 <a href="" class="navigation__link d-none d-md-inline">Обратная связь</a>
             </div>
-            <div class="d-flex col-6 ml-auto justify-content-end">
+            <div class="d-flex col-8 col-md-6 ml-auto justify-content-end">
                 <!-- Authentication Links -->
                 @guest
                     <div class="d-none d-md-block">
@@ -18,7 +18,7 @@
                         <div class="navigation__burger" id="js--navigation-burger">
                             <span></span>
                             <span></span>
-                            <span></span>    
+                            <span></span>
                         </div>    
                         <div class="navigation__submenu block-shadow mt-2" id="js--navigation-burger-submenu">
                             <div class="navigation__submenu-item">
@@ -42,8 +42,8 @@
                             <span>{{ Auth::user()->name }}</span>
                             <div class="navigation__avatar ml-3">
                                 {{-- TODO: Avatar --}}
-                                @if (Auth::user()->avatar)
-                                    <img src="" alt="" />
+                                @if ($udata->avatar)
+                                    <img src="{{ asset($udata->avatar) }}" alt="" />
                                 @else 
                                     <img src="{{ asset('images/general/avatar-blank.jpg') }}" alt="" />
                                 @endif
@@ -51,7 +51,7 @@
                         </div>
                         <div class="navigation__submenu block-shadow mt-2" id="js--navigation-submenu">
                             <div class="navigation__submenu-item">
-                                <a href="" class="navigation__submenu-link">Настройки профиля</a>
+                                <a href="{{ route('profile.index') }}" class="navigation__submenu-link">Настройки профиля</a>
                             </div>
                             <div class="navigation__submenu-item">
                                 <a href="" class="navigation__submenu-link">Добавить экскурсию</a>
@@ -63,10 +63,9 @@
                                 <a href="" class="navigation__submenu-link js--navigation-logout">Выход</a>
                             </div>
 
-                                <form id="js--logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
+                            <form id="js--logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </div>
                     </div>
                 @endguest

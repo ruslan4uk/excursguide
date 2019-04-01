@@ -31,12 +31,21 @@
         position: absolute
         left: -9999px
 
+    &--profile
+        display: inline-block
+        & label
+            font-size: 0.875rem
+            font-weight: 400
+            color: $blue 
+            &:after
+                top: 1px
+
 .custom-input 
-    margin-bottom: 1.5rem
-    input
+    margin-bottom: 2.5rem
+    & input
         border-radius: 0
         border: 0
-        border-bottom: 1px solid #cccccc
+        border-bottom: 1px solid #eeeeee
         outline: none
         color: $blue
         font-size: 0.75rem
@@ -45,6 +54,8 @@
         &:hover, &:focus
             box-shadow: none
             border-bottom: 1px solid $blue
+    & textarea
+        border-radius: 25px !important
     & .invalid-feedback
         font-size: 0.75rem
 
@@ -60,7 +71,7 @@
     label
         position: absolute
         left: 0
-        top: -0.325rem
+        top: -0.5rem
         cursor: text
         font-size: 0.675rem
         font-weight: 500
