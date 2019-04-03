@@ -26,7 +26,8 @@ export default {
         }
     },
     computed: {
-        ...mapState('profile', ['services', 'user_data', 'errors', 'success']),
+        ...mapState('profile', ['user_data', 'errors', 'success']),
+        ...mapGetters('config', ['services']),
     },
     methods: {
         ...mapMutations('profile', ['setServices']),

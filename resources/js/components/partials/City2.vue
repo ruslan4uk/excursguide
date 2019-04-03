@@ -33,6 +33,7 @@
 <script>
 import {mapActions, mapGetters, mapState, mapMutations} from 'vuex'
 import ClickOutside from 'vue-click-outside'
+
 export default {
     props: ['placeholder', 'locations', 'errors'],
     data() {

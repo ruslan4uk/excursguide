@@ -17,7 +17,7 @@
         <div class="row">
             @foreach (array(1,2,3,4,5) as $item)
                 
-            <div class="col-12 col-sm-6 col-lg-4 mb-4">
+            <div class="col-12 col-sm-6 col-lg-3 mb-4">
                 <div class="tour-item border25 block-shadow block-shadow-hover">
                     <a href=""><img src="https://via.placeholder.com/400" alt="" class="border25 mb-3"></a>
                     <a href="" class="tour-item__title mb-3">Музей Ватикана</a>

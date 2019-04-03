@@ -42,8 +42,8 @@
                             <span>{{ Auth::user()->name }}</span>
                             <div class="navigation__avatar ml-3">
                                 {{-- TODO: Avatar --}}
-                                @if ($udata->avatar)
-                                    <img src="{{ asset($udata->avatar) }}" alt="" />
+                                @if ($uu['user_data']['avatar'])
+                                    <img src="{{ asset($uu['user_data']['avatar']) }}" alt="" />
                                 @else 
                                     <img src="{{ asset('images/general/avatar-blank.jpg') }}" alt="" />
                                 @endif
@@ -54,7 +54,7 @@
                                 <a href="{{ route('profile.index') }}" class="navigation__submenu-link">Настройки профиля</a>
                             </div>
                             <div class="navigation__submenu-item">
-                                <a href="" class="navigation__submenu-link">Добавить экскурсию</a>
+                                <a href="{{ route('tourAdd') }}" class="navigation__submenu-link">Добавить экскурсию</a>
                             </div>
                             <div class="navigation__submenu-item">
                                 <a href="" class="navigation__submenu-link">Мои экскурсии</a>

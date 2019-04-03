@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Profile;
 
 use Auth;
 use App\User;
+use App\Tour;
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 
-class ProfileController extends Controller
+class TourController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +18,11 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //$user = User::find(Auth::id())->with('userData')->first();
-        
-        return view('profile.api_profile');
+        $tour = Tour::create([
+            'user_id' => Auth::id()
+        ]);
+
+        return redirect()->route('tourEdit', ['id' => $tour->id]);
     }
 
     /**
@@ -30,7 +32,11 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        $tour = Tour::create([
+            'user_id' => Auth::id()
+        ]);
+
+        return redirect()->route('tourEdit', ['id' => $tour->id]);
     }
 
     /**
@@ -41,25 +47,7 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'about' => ['required', 'string', 'min:50', 'max:255'],
-        ]);
-
-        //dd($request->get('name'));
-        $user = User::find(Auth::id())->with('userData')->first();
-        $user->update([
-            'name' => $request->get('name'),
-        ]);
-        
-        $user->userData()->update([
-            'about' => $request->get('about'),
-            //'location' => $request->get('locations'),
-            'locations' => json_encode(array_diff($request->get('locations'), array(''))),
-        ]);
-
-        return back()->with('status', 'Успешно сохранено');
+        //
     }
 
     /**
@@ -81,7 +69,9 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tour = Tour::where('user_id', Auth::id())->where('id', $id)->firstOrFail();
+
+        return view('profile.api_tour', ['tour' => $tour]);
     }
 
     /**

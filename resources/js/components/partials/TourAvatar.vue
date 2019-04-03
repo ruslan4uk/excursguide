@@ -1,10 +1,7 @@
 <template>
-    <div>
-        <div class="profile__user d-flex align-items-center">
-            <div class="profile__avatar mr-3">
-                 <img :src="avatar + timestamp" alt="">                 
-            </div>
-            <div class="profile__username">{{profile.name}}</div>
+    <div class="tour__av text-center pr-4">
+        <div class="tour__avatar mb-2">
+            <img :src="avatar + timestamp" alt="" class="border25">                 
         </div>
         <!-- <a href="" class="profile__avatar-upload">Добавить фото</a> -->
         <label for="profile-avatar" class="profile__avatar-upload">Добавить фото</label>
@@ -15,6 +12,7 @@
 <script>
 import {mapActions, mapGetters, mapState, mapMutations} from 'vuex'
 export default {
+    props: ['tourId'],
     data() {
         return {
             comAvatar: this.avatar || '/images/general/avatar-blank.jpg',
@@ -23,20 +21,21 @@ export default {
         }
     },
     computed: {
-        ...mapGetters('profile', ['profile', 'user_data']),
+        ...mapGetters('tour', ['tour']),
 
         avatar() {
-            return this.user_data.avatar ? this.user_data.avatar : '/images/general/avatar-blank.jpg'
+            return this.tour.avatar ? this.tour.avatar : '/images/general/avatar-blank.jpg'
         },
     },
     methods: {
-        ...mapMutations('profile', ['setAvatar']),
+        ...mapMutations('tour', ['setAvatar']),
 
         changeAvatar() {
             this.image = this.$refs.avatar.files[0];   
             let formData = new FormData
             formData.append('file', this.image)
-            axios.post('/api/profile/upload/avatar', formData, {headers: {'Content-Type': 'multipart/form-data'}})
+            formData.append('id', this.tourId)
+            axios.post('/api/profile/tours/upload/avatar', formData, {headers: {'Content-Type': 'multipart/form-data'}})
                 .then(response => {
                     this.timestamp = '?' + Math.floor(Date.now() / 1000)
                     this.setAvatar(response.data)
@@ -50,5 +49,6 @@ export default {
 </script>
 
 <style scoped lang="sass">
-
+.tour__av
+    max-width: 15rem
 </style>

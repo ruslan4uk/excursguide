@@ -195,6 +195,7 @@ return [
         'user_data.languages'   => 'Язык',
         'user_data.locations'   => 'Местоположение',
         'user_data.contacts.*.value'    => 'Контакты',
-        'user_data.contacts.*.type_id'  => 'Тип контактов'
+        'user_data.contacts.*.type_id'  => 'Тип контактов',
+        'user_data.user_files'          => 'Лицензии',
     ],
 ];

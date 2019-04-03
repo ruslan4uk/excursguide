@@ -3,13 +3,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-3 mb-4 mb-lg-0">
-                    <!-- <div class="profile__user d-flex align-items-center">
-                        <div class="profile__avatar mr-3">
-                            <img :src="avatar" />                      
-                        </div>
-                        <div class="profile__username">{{profile.name}}</div>
-                    </div>
-                    <a href="" class="profile__avatar-upload">Добавить фото</a> -->
                     <user-avatar></user-avatar>
                 </div>
                 <div class="col-12 col-lg-9">
@@ -103,8 +96,8 @@
                                     
                                     <license-uploader :data="user_data.user_files"></license-uploader>
                                     
-                                    <span class="invalid-feedback d-block" role="alert" v-if="errors['user_data.about']">
-                                        <strong>{{errors['user_data.about'][0]}}</strong>
+                                    <span class="invalid-feedback d-block" role="alert" v-if="errors['user_data.user_files']">
+                                        <strong>{{errors['user_data.user_files'][0]}}</strong>
                                     </span>
                                 
                                 </div>
@@ -143,7 +136,8 @@ import LicenseUploader from '../partials/LicenseUploader'
 export default {
     components: {UserServices, Tags, City2, Contacts, UserAvatar, LicenseUploader},
     computed: {
-        ...mapState('profile', ['profile', 'user_data', 'services', 'languages', 'errors', 'success', 'contactType']),
+        ...mapState('profile', ['profile', 'user_data', 'errors', 'success']),
+        ...mapGetters('config', ['contactType', 'services', 'languages',]),
     },
     methods: {
         ...mapActions('profile', ['getProfile', 'saveProfile']),

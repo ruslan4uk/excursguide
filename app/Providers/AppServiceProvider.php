@@ -26,15 +26,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('*', function($view) {
-            $user = \Auth::user();
+        //$user = \Auth::user();
     
-            // other application logic...
-            \Auth::check() 
-                ? $view->with('uu', \App\User::where('id', \Auth::id())->first())
-                : \Auth::check();
-            \Auth::check() 
-                ? $view->with('udata', \App\UserData::where('user_id', \Auth::id())->first())
-                : \Auth::check();
+            //other application logic...
+            if( \Auth::check() ) {
+                $user = \App\User::where('id', \Auth::id())->with('userData')->firstOrFail()->toArray();
+                $view->with('uu', $user);
+            }
+            // \Auth::check() 
+            //     ? $view->with('udata', \App\UserData::where('user_id', \Auth::id())->first())
+            //     : \Auth::check();
         });
         
         Schema::defaultStringLength(191);

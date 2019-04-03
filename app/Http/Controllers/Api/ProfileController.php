@@ -51,10 +51,11 @@ class ProfileController extends Controller
             // UserData
             'user_data.languages'           => ['required'], 
             'user_data.locations'           => ['required'],
-            'user_data.contacts.*.value'      => ['required'],
-            'user_data.contacts.*.type_id'    => ['required'],
+            'user_data.contacts.*.value'    => ['required'],
+            'user_data.contacts.*.type_id'  => ['required'],
             'user_data.services'            => ['required'],
-            'user_data.about'               => ['required', 'string', 'min:50', 'max:255'],
+            'user_data.about'               => ['required', 'string', 'min:50', 'max:2000'],
+            'user_data.user_files'          => ['required'],
         ]);
 
         $user = User::where('id', Auth::id())->with('userData')->first();
@@ -68,56 +69,11 @@ class ProfileController extends Controller
             'contacts'      => json_encode($request->get('user_data')['contacts']),
             'services'      => json_encode($request->get('user_data')['services']),
             'about'         => $request->get('user_data')['about'],
+            'user_files'    => json_encode($request->get('user_data')['user_files']),
         ]);
 
         return response()->json(['messages' => 'Профиль успешно обновлен']);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
 
     /**
      * Uploader user avatar
@@ -159,7 +115,9 @@ class ProfileController extends Controller
 
         $user = User::where('id', Auth::id())->with('userData')->firstOrFail();
         $user_data = json_decode($user, true);
-        $user_files = $user_data['user_data']['user_files'];
+        $user_files = $user_data['user_data']['user_files'] 
+                        ? $user_data['user_data']['user_files']
+                        : [];
 
         $i = 0;
         $path = [];
@@ -179,32 +137,6 @@ class ProfileController extends Controller
         ]);
 
         return response()->json($license);
-
-
-
-        // if($request->get('id') >= 0 && is_numeric($request->get('id'))) {
-        //     Storage::disk('public')->delete('users/' . Auth::id() . '/license/' . $user_files[$request->get('id')]->filename);
-        //     \array_splice($user_files, $request->get('id'), 1);
-        //     $user_data->user_files = json_encode($user_files);
-        //     $user_data->save();
-        //     return \response()->json($user_files);
-        // }
-        // $i = 0;
-        // $path = [];
-        // foreach ($request->file('files') as $file) {
-        //     $i++;
-        //     $image = Image::make($file)->encode('jpg');
-        //     if(Storage::disk('public')->put('users/' . Auth::id() . '/license/' . md5($i . time()). '.jpg', (string) $image))
-        //     {
-        //         $path[$i]['path'] = 'storage/users/' . Auth::id() . '/license/' . md5($i . time()) . '.jpg';
-        //         $path[$i]['filename'] = md5($i . time()). '.jpg';
-        //     }
-        //     $license = array_merge($user_files, $path);
-        // }    
-        //$license = $user_data->user_files ? array_merge($user_files, $path) : $path;
-        // $user_data->user_files = json_encode($license);
-        // $user_data->save();
-        // return response()->json($license);    
     }
 
     public function deleteLicense (Request $request) {
@@ -220,8 +152,6 @@ class ProfileController extends Controller
             $user->userData()->update([
                 'user_files' => json_encode($user_files),
             ]);
-            // $user_files = json_encode($user_files);
-            // $user_data->save();
             return response()->json($user_files);
         }
 

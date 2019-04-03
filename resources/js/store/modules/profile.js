@@ -12,38 +12,6 @@ export default {
         success: {},
         errors: {},
 
-        services: [
-            {id: 1, title: 'Частный гид'},
-            {id: 2, title: 'Туристическая компания/агентство'},
-            {id: 3, title: 'Туроператор'},
-            {id: 4, title: 'Шоппер'},
-            {id: 5, title: 'Услуги перевода'},
-            {id: 6, title: 'Фотограф'},
-            {id: 7, title: 'Видео оператор'},
-            {id: 8, title: 'Услуги трансфера'},
-            {id: 9, title: 'Аренда авто'},
-            {id: 10, title: 'Аренда яхты '},
-            {id: 11, title: 'Организация торжеств'},
-            {id: 12, title: 'Гастрономический гид'},
-            {id: 13, title: 'Инструктор'},
-        ],
-
-        languages: [
-            {uid: 'ru', title: 'Русский'},
-            {uid: 'en', title: 'Английский'},
-            {uid: 'es', title: 'Испанский'},
-            {uid: 'pt', title: 'Португальский'},
-            {uid: 'ch', title: 'Чешский'},
-        ],
-
-        contactType: [
-            {id: 1, title: 'Домашний'},
-            {id: 2, title: 'Рабочий'},
-            {id: 3, title: 'Skype'},
-            {id: 4, title: 'Telegram'},
-            {id: 5, title: 'Viber'},
-            {id: 6, title: 'WhatsApp'}
-        ]
     },
 
     actions: {
@@ -162,15 +130,7 @@ export default {
             return state.user_data
         },
 
-        services (state) {
-            return state.services
-        },
-        languages (state) {
-            return state.languages
-        },
-        contactType (state) {
-            return state.contactType
-        },
+
         getItemContacts (state) {            
             return state.user_data.contacts
         },

@@ -9895,6 +9895,12 @@ img {
   top: 1px;
 }
 
+.form-helper {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #cccccc;
+}
+
 .custom-input {
   margin-bottom: 2.5rem;
 }
@@ -9915,8 +9921,9 @@ img {
 .custom-input textarea {
   border-radius: 25px !important;
 }
-.custom-input .invalid-feedback {
-  font-size: 0.75rem;
+
+.invalid-feedback {
+  font-size: 0.675rem;
 }
 
 /**
@@ -10181,20 +10188,20 @@ img {
   align-items: center;
 }
 .tour-item__avatar {
-  max-width: 3rem;
+  max-width: 2.5rem;
 }
 .tour-item__name {
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 500;
   color: #000000;
 }
 .tour-item__time {
-  font-size: 0.875rem;
+  font-size: 0.813rem;
   font-weight: 300;
   color: #666666;
 }
 .tour-item__price {
-  font-size: 0.875rem;
+  font-size: 0.813rem;
   font-weight: 300;
   color: #666666;
 }

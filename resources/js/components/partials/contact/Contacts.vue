@@ -28,8 +28,9 @@ export default {
         }
     },
     computed: {
-        ...mapState('profile', ['user_data', 'contactType']),
+        ...mapState('profile', ['user_data']),
         ...mapGetters('profile', ['errors']),
+        ...mapGetters('config', ['contactType'])
     },
     methods: {
         ...mapMutations('profile', ['addContacts'])

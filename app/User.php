@@ -42,5 +42,9 @@ class User extends Authenticatable
         return $this->hasOne('App\UserData', 'user_id', 'id');
     }
 
+    public function userTour() {
+        return $this->hasMany('App\Tour', 'user_id', 'id');
+    }
+
     
 }
