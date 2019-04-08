@@ -20,15 +20,18 @@
                     {{ $guide->name }}
                 </div>
 
-                <div class="mb-3">
-                    <div class="subtitle mb-1">Владение языками</div>
-                    <div class="guide__small">
-                        @foreach ($guide->userData->languages as $language)
-                            {{ $guide->userData->language($language) }}
-                        @endforeach
-                    </div>
-                </div>
                 
+                @if ($guide->userData->languages)
+                    <div class="mb-3">
+                        <div class="subtitle mb-1">Владение языками</div>
+                        <div class="guide__small">
+                            @foreach ($guide->userData->languages as $language)
+                                {{ $guide->userData->language($language) }}
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+                    
                 <div class="mb-3">
                     <div class="subtitle mb-1">Услуги</div>
                     <div class="guide__small">
@@ -36,32 +39,33 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <div class="subtitle mb-1">Города проживания</div>
-                    <div class="guide__small">
-                        @foreach ($guide->userData->locations as $city)
-                            <div class="mb-2">
-                                <i class="fas fa-map-marker-alt"></i>
-                                {{ $guide->userData->get_city_name($city) }}
-                            </div>
-                        @endforeach
+                @if ($guide->userData->locations)
+                    <div class="mb-3">
+                        <div class="subtitle mb-1">Города проживания</div>
+                        <div class="guide__small">
+                            @foreach ($guide->userData->locations as $city)
+                                <div class="mb-2">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    {{ $guide->userData->get_city_name($city) }}
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
+                @endif                
 
-                <div class="mb-3">
-                    <div class="subtitle mb-1">Контакты</div>
-                    <div class="guide__small">
-                        @foreach ($guide->userData->contacts as $contact)
-                            <div class="mb-1">
-                                {!! $guide->userData->contact_type($contact->type_id) !!}
-                                <span class="ml-2">{{ $contact->value }}</span>
-                            </div>
-                        @endforeach
+                @if ($guide->userData->contacts)
+                    <div class="mb-3">
+                        <div class="subtitle mb-1">Контакты</div>
+                        <div class="guide__small">
+                            @foreach ($guide->userData->contacts as $contact)
+                                <div class="mb-1">
+                                    {!! $guide->userData->contact_type($contact->type_id) !!}
+                                    <span class="ml-2">{{ $contact->value }}</span>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
-
-                        
-                
+                @endif
 
             </div>
 
@@ -108,6 +112,13 @@
                                         </div>
                                     </div>
                                 @endforeach
+                                @if (count($guide->userTour) == 0)
+                                    <div class="col-12">
+                                        <div class="alert alert-info">
+                                            У гида еще нет экскурсий
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -124,13 +135,19 @@
                                     <div class="row mb-3">
                                         <div class="col-2">
                                             @if ($comment->userData->avatar)
-                                                <img src="{{ asset($comment->userData->avatar) }}" alt="" class="border25 mb-3">
+                                                <a href="{{ route('guideIndex', $comment->userData->user_id) }}">
+                                                    <img src="{{ asset($comment->userData->avatar) }}" alt="" class="border25 mb-3">
+                                                </a>
                                             @else 
-                                                <img src="https://via.placeholder.com/400" alt="" class="border25 mb-3">
+                                                <a href="{{ route('guideIndex', $comment->userData->user_id) }}">
+                                                    <img src="https://via.placeholder.com/400" alt="" class="border25 mb-3">
+                                                </a>
                                             @endif
                                         </div>
                                         <div class="col-10">
-                                            <div class="title">{{$comment->user->name}}</div>
+                                            <a href="{{ route('guideIndex', $comment->userData->user_id) }}">
+                                                <div class="title">{{$comment->user->name}}</div>
+                                            </a>
                                             <div class="guide__small">
                                                 {{$comment->text}}
                                             </div>

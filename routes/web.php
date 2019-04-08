@@ -69,3 +69,12 @@ Route::get('/tour/{id}', 'Frontend\TourController@index')->name('tourIndex');
 Route::get('/guide/{id}', 'Frontend\GuideController@index')->name('guideIndex');
 // Add comment
 Route::post('/guide/{id}', 'Frontend\GuideController@addComment')->middleware('auth')->name('addComment');
+
+
+
+/**
+ * Admin routes
+ */
+Route::get('/eg-admin', function(){
+    return 'Is admin panel';
+})->middleware('auth', 'role:admin');

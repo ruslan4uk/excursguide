@@ -16,6 +16,7 @@ class UserData extends Model
         'contacts'  => 'Object',
         'services'  => 'Json',
         'user_files' => 'Array',
+        'status'    => 'Number',
     ];
 
     public function user() {

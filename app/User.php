@@ -48,6 +48,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Return has admin
+     *
+     * @return boolean
+     */
+    public function isAdmin() 
+    {     
+        return $this->userData->status === '999' ? true : false;
+    }
+
+    /**
      * Get tour for user
      *
      * @return void
@@ -85,16 +95,14 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment', 'page_id');
     }
 
+    /**
+     * get user commetns
+     *
+     * @return void
+     */
     public function commentUser() {
         return $this->hasMany('App\Comment', 'user_id');
     }
 
-    /**
-     * TODO: DELETE
-     *
-     * @return void
-     */
-    // public function categoryName() {
-    //     return $this->userData()->get();
-    // }
+    
 }

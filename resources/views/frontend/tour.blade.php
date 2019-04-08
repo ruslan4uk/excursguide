@@ -12,14 +12,14 @@
                 <div class="tour__guide border25 py-4 mb-3">
                     <div class="title mb-3">Гид</div>
                     <div class="d-flex align-items-center mb-4">
-                        <div class="tour__guide-avatar mr-3">
+                        <a href="{{ route('guideIndex', $tour->user->id) }}" class="tour__guide-avatar mr-3">
                             @if ($tour->userData->avatar)
                                 <img src="{{ asset($tour->userData->avatar) }}" alt="" class="border25">
                             @else 
                                 <img src="https://via.placeholder.com/400" alt="" class="border25">
                             @endif
-                        </div>
-                        <div class="tour__guide-name">{{ $tour->user->name }}</div>
+                        </a>
+                        <a href="{{ route('guideIndex', $tour->user->id) }}" class="tour__guide-name">{{ $tour->user->name }}</a>
                     </div>
 
                     <div class="d-block mb-3">
