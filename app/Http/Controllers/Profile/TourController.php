@@ -18,11 +18,33 @@ class TourController extends Controller
      */
     public function index()
     {
-        $tour = Tour::create([
-            'user_id' => Auth::id()
-        ]);
+        $tours = Tour::where(['user_id' => Auth::id()])->where('active', 2)->get();
 
-        return redirect()->route('tourEdit', ['id' => $tour->id]);
+        return view('profile.tours', compact('tours'));
+    }
+
+    /**
+     * Moderate list
+     *
+     * @return void
+     */
+    public function moderate()
+    {
+        $tours = Tour::where(['user_id' => Auth::id()])->where('active', 1)->get();
+
+        return view('profile.tours', compact('tours'));
+    }
+
+    /**
+     * Archive list
+     *
+     * @return void
+     */
+    public function archive()
+    {
+        $tours = Tour::where(['user_id' => Auth::id()])->where('active', 999)->get();
+
+        return view('profile.tours', compact('tours'));
     }
 
     /**

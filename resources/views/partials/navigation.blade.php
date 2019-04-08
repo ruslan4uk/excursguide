@@ -1,4 +1,4 @@
-<section class="navigation">
+<section class="navigation mb-5 {{ isset($class) ? $class : '' }}">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-4 col-md-6">
@@ -57,7 +57,7 @@
                                 <a href="{{ route('tourAdd') }}" class="navigation__submenu-link">Добавить экскурсию</a>
                             </div>
                             <div class="navigation__submenu-item">
-                                <a href="" class="navigation__submenu-link">Мои экскурсии</a>
+                                <a href="{{ route('tourList') }}" class="navigation__submenu-link">Мои экскурсии</a>
                             </div>
                             <div class="navigation__submenu-item">
                                 <a href="" class="navigation__submenu-link js--navigation-logout">Выход</a>

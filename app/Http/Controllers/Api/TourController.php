@@ -83,20 +83,13 @@ class TourController extends Controller
             'other_rate'        => $request->get('other_rate'),
             'other_item'        => $request->get('other_item'),
             'about'             => $request->get('about'),
+
+            'active'            => 1,
         ]);
 
-        return response()->json(['messages' => 'Экскурсия успешно сохранена']);
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+
+        return response()->json(['messages' => 'Экскурсия успешно сохранена']);
     }
 
     /**
@@ -107,7 +100,9 @@ class TourController extends Controller
      */
     public function edit($id)
     {
-        $tour = Tour::where('user_id', Auth::id())->where('id', $id)->firstOrFail();
+        $tour = Tour::where('user_id', Auth::id())
+                        ->where('id', $id)
+                        ->firstOrFail();
 
         return response()->json($tour);
     }
@@ -166,10 +161,14 @@ class TourController extends Controller
         foreach ($request->file('files') as $file) {
             $i++;
             $image = Image::make($file)->encode('jpg');
-            if(Storage::disk('public')->put('users/' . Auth::id() . '/tour/' . $request->get('id') . '/'. md5($i . time()). '.jpg', (string) $image))
+            $crop = Image::make($file)->fit(1200, 705)->encode('jpg');
+            if(Storage::disk('public')->put('users/' . Auth::id() . '/tour/' . $request->get('id') . '/'. md5($i . time()). '.jpg', (string) $image)
+            && Storage::disk('public')->put('users/' . Auth::id() . '/tour/' . $request->get('id') . '/'. md5($i . time()). '_crop.jpg', (string) $crop))
             {
                 $path[$i]['path'] = '/storage/users/' . Auth::id() . '/tour/' . $request->get('id') . '/'. md5($i . time()) . '.jpg';
+                $path[$i]['crop'] = '/storage/users/' . Auth::id() . '/tour/' . $request->get('id') . '/'. md5($i . time()) . '_crop.jpg';
                 $path[$i]['filename'] = md5($i . time()). '.jpg';
+                $path[$i]['filename_crop'] = md5($i . time()). '_crop.jpg';
             }
             $license = array_merge($tour_photo, $path);
         }
@@ -185,11 +184,13 @@ class TourController extends Controller
 
         $tour = Tour::where('id', Auth::id())->where('id', $request->get('tour_id'))->firstOrFail();
         $tour_photo = $tour->photo;
+        //return $tour_photo;
 
         if($request->get('id') >= 0 && is_numeric($request->get('id'))) {
-            Storage::disk('public')->delete('users/' . Auth::id() . '/tour/' . $request->get('tour_id') . '/'. $tour_photo[$request->get('id')]['filename']);
+            Storage::disk('public')->delete('users/' . Auth::id() . '/tour/' . $request->get('tour_id') . '/'. $tour_photo{$request->get('id')}->filename);
+            Storage::disk('public')->delete('users/' . Auth::id() . '/tour/' . $request->get('tour_id') . '/'. $tour_photo{$request->get('id')}->filename_crop);
             \array_splice($tour_photo, $request->get('id'), 1);
-
+ 
             Tour::where('id', Auth::id())->where('id', $request->get('tour_id'))->update([
                 'photo' => json_encode($tour_photo),
             ]);

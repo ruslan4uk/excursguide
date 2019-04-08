@@ -72,7 +72,7 @@
                                 <div class="card-title mb-0">Расскажите туристам о себе</div>
                                 <div class="card-title-small mb-3">Это позволит привлечь больше внимания к Вам</div>
                                 <div class="form-group custom-input">
-                                    <textarea name="about" id="userdata_about" cols="30" rows="10" 
+                                    <textarea name="about" id="userdata_about" wrap="soft" cols="30" rows="10" 
                                             :class="'form-control' 
                                                     + [errors['user_data.about'] ? ' is-invalid' : ''] 
                                                     + [success.messages ? ' is-valid' : '']" 
@@ -103,7 +103,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                         <div class="alert alert-success mb-4" v-if="success.messages">
                             {{ success.messages }}
@@ -137,18 +136,24 @@ export default {
     components: {UserServices, Tags, City2, Contacts, UserAvatar, LicenseUploader},
     computed: {
         ...mapState('profile', ['profile', 'user_data', 'errors', 'success']),
-        ...mapGetters('config', ['contactType', 'services', 'languages',]),
+        ...mapGetters('config', ['contactType', 'languages', 'services']),
+
     },
     methods: {
         ...mapActions('profile', ['getProfile', 'saveProfile']),
         ...mapMutations('profile', ['setName', 'setAbout', 'addLang', 'deleteLang', 
                                     'addCity', 'deleteCity']),
 
+        ...mapActions('config', ['apiService']),
+
         submitForm() {
             this.saveProfile();
         },
     },
     mounted() {
+        // get service from api
+        this.apiService();
+        // get profile from api
         this.getProfile();
     },
 }

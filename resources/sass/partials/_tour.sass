@@ -1,6 +1,86 @@
 // tour
-
 .tour
+    &__guide
+        box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.05)
+        padding: 1rem
+        &-title 
+            font-size: 1.125rem
+            font-weight: 400
+            color: #686c71
+        &-avatar
+            max-width: 6.5rem
+            flex: 0 0 6.5rem
+        &-name 
+            font-size: 1.25rem
+            font-weight: 400
+            line-height: 1.2
+
+    &__title
+        font-size: 1.5rem
+        font-weight: 400
+        color: #404040
+
+    &__card
+        margin-top: -2.5rem
+        position: relative
+        z-index: 2
+        @media (min-width: 992px)
+            padding: 0 1rem
+
+    &__services
+        font-size: 0.875rem
+        color: #75797e
+        & span:after
+            content: ', '
+        & span:last-child:after
+            content: ''
+
+    &__small
+        & *
+            font-size: 0.875rem
+        & strong 
+            font-weight: 500
+
+    &__contact-item *
+        font-size: 0.875rem
+    &__about
+        font-size: 0.875rem
+        color: #404040
+    &__about-item
+        font-size: 0.875rem
+        color: #404040
+    &__about-icon
+        font-size: 1.125rem
+
+
+    &__left
+        @media (min-width: 992px)
+            flex: 0 0 28%
+            max-width: 28%
+    &__right
+        @media (min-width: 992px)
+            flex: 0 0 70%
+            max-width: 70%
+
+    // Slider
+    &__slider
+        position: relative
+        &-navs
+            position: absolute
+            top: calc(50% - 1.25rem)
+            z-index: 5
+            font-size: 3rem
+            color: #eeeeee
+            opacity: 0.7
+            transition: all ease 0.3s
+            &:hover
+                opacity: 1
+            &.disable
+                opacity: 0.5
+            &--next 
+                right: 1rem
+            &--prev 
+                left: 1rem
 
 
 // tour-item

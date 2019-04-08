@@ -14,6 +14,8 @@ export default {
         async getTour(store, id) {
             await axios.get('/api/profile/tours/' + id).then(r => r.data)
                 .then(response => {
+                    console.log(response);
+                    
                     store.commit('setTour', response)
                 })
         },

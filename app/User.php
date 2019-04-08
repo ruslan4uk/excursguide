@@ -37,14 +37,64 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-    public function userData() {
+    /**
+     * Get user_data
+     *
+     * @return void
+     */
+    public function userData() 
+    {
         return $this->hasOne('App\UserData', 'user_id', 'id');
     }
 
-    public function userTour() {
+    /**
+     * Get tour for user
+     *
+     * @return void
+     */
+    public function userTour() 
+    {
         return $this->hasMany('App\Tour', 'user_id', 'id');
     }
 
-    
+    /**
+     * Get active tour for user
+     *
+     * @return void
+     */
+    public function activeTours()
+    {
+        return $this->userTour()->where('active', 2);
+    }
+
+    /**
+     * Get services for user data 
+     *
+     * @return void
+     */ 
+    public function services() {
+        return $this->belongsToMany('App\Service');
+    }
+
+    /**
+     * Get comment for user page
+     *
+     * @return void
+     */
+    public function comments() {
+        return $this->hasMany('App\Comment', 'page_id');
+    }
+
+    public function commentUser() {
+        return $this->hasMany('App\Comment', 'user_id');
+    }
+
+    /**
+     * TODO: DELETE
+     *
+     * @return void
+     */
+    // public function categoryName() {
+    //     return $this->userData()->get();
+    // }
 }

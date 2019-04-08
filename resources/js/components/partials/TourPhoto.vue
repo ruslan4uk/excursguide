@@ -60,14 +60,14 @@ export default {
             for (var pair of formData.entries()) {
                 console.log(pair[0]+ ', ' + pair[1]); 
             }
-            axios.post('/api/profile/tours/upload/license', formData, {headers: {'Content-Type': 'multipart/form-data'}})
+            axios.post('/api/profile/tours/upload/photo', formData, {headers: {'Content-Type': 'multipart/form-data'}})
                 .then(response => {
                     this.setPhoto(response.data)
                     this.timestamp = '?' + Math.floor(Date.now() / 1000)
                 })
         },
         deleteLicense(index) {
-            axios.post('/api/profile/tours/upload/license/delete', {id: index, tour_id: this.tour.id})
+            axios.post('/api/profile/tours/upload/photo/delete', {id: index, tour_id: this.tour.id})
                 .then(response => {
                     this.setPhoto(response.data)
                     this.timestamp = '?' + Math.floor(Date.now() / 1000)                    

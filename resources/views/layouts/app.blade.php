@@ -10,10 +10,10 @@
 </head>
 <body>
 <div id="app">
-    {{-- include header --}}
-    @include('partials/navigation')
 
-    <div class="container">
+    @yield('content')
+
+    <!--<div class="container">
         <div class="row">
             @foreach (array(1,2,3,4,5) as $item)
                 
@@ -44,7 +44,7 @@
 
             @endforeach
         </div>
-    </div>
+    </div> -->
 
     {{-- include footer --}}
     @include('partials/footer')

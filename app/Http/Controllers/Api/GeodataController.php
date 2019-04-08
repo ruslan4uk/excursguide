@@ -39,4 +39,21 @@ class GeodataController extends Controller
         }
     }
 
+
+    /**
+     * Main search
+     *
+     * @return json
+     */
+    public function search(Request $request)
+    {
+        if($request->get('q')) {
+            return Cities::WhereRaw("MATCH(city.city) AGAINST('" . $request->get('q') . "*' IN BOOLEAN MODE)")
+                    ->limit(25)
+                    ->select('city.id','city.city','city.city_iso_code','city.region', 'country.country_name')
+                    ->join('country', 'country.country_iso_code', '=', 'city.city_iso_code')
+                    ->get();
+        }
+    }
+
 }

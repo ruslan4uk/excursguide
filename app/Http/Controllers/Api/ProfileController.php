@@ -20,7 +20,10 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $user = User::where('id', Auth::id())->with('userData')->first();
+        $user = User::where('id', Auth::id())
+                    ->with('userData')
+                    ->with('services')
+                    ->first();
         
         return response()->json($user);
     }
@@ -72,6 +75,13 @@ class ProfileController extends Controller
             'user_files'    => json_encode($request->get('user_data')['user_files']),
         ]);
 
+        // Many to many service
+        $user->services()->detach();
+        if($request->get('user_data')['services']) 
+        {
+            $user->services()->attach($request->get('user_data')['services']);
+        }
+
         return response()->json(['messages' => 'Профиль успешно обновлен']);
     }
 
@@ -95,11 +105,11 @@ class ProfileController extends Controller
         {
             $user = User::where('id', Auth::id())->with('userData')->first();
             $user->userData()->update([
-                'avatar' => 'storage/users/' . Auth::id() . '/avatar.jpg',
+                'avatar' => '/storage/users/' . Auth::id() . '/avatar.jpg',
             ]);
             $user->save();
 
-            return 'storage/users/' . Auth::id() . '/avatar.jpg';
+            return '/storage/users/' . Auth::id() . '/avatar.jpg';
         }
     }
 

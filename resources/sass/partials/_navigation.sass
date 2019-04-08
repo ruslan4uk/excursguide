@@ -66,6 +66,24 @@
             display: block
             margin: 6px 0
 
+
+    // Revers
+    &--revers-blue
+        background: $blue
+    &--revers &__link 
+        color: #ffffff
+        &:after
+            background-color: #fff
+    &--revers &__name span 
+        color: #ffffff
+    &--revers &__burger span 
+        background-color: #fff
+
+    &--main 
+        position: absolute
+        width: 100%
+
+
 .logo
     padding: 1.125rem 0.625rem
     border-radius: 15px

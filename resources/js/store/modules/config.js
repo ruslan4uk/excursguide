@@ -1,22 +1,25 @@
+import Axios from "axios";
+
 export default {
     namespaced: true,
 
     state: {
-        services: [
-            {id: 1, title: 'Частный гид'},
-            {id: 2, title: 'Туристическая компания/агентство'},
-            {id: 3, title: 'Туроператор'},
-            {id: 4, title: 'Шоппер'},
-            {id: 5, title: 'Услуги перевода'},
-            {id: 6, title: 'Фотограф'},
-            {id: 7, title: 'Видео оператор'},
-            {id: 8, title: 'Услуги трансфера'},
-            {id: 9, title: 'Аренда авто'},
-            {id: 10, title: 'Аренда яхты '},
-            {id: 11, title: 'Организация торжеств'},
-            {id: 12, title: 'Гастрономический гид'},
-            {id: 13, title: 'Инструктор'},
-        ],
+        services: [],
+        // services: [
+        //     {id: 1, title: 'Частный гид'},
+        //     {id: 2, title: 'Туристическая компания/агентство'},
+        //     {id: 3, title: 'Туроператор'},
+        //     {id: 4, title: 'Шоппер'},
+        //     {id: 5, title: 'Услуги перевода'},
+        //     {id: 6, title: 'Фотограф'},
+        //     {id: 7, title: 'Видео оператор'},
+        //     {id: 8, title: 'Услуги трансфера'},
+        //     {id: 9, title: 'Аренда авто'},
+        //     {id: 10, title: 'Аренда яхты '},
+        //     {id: 11, title: 'Организация торжеств'},
+        //     {id: 12, title: 'Гастрономический гид'},
+        //     {id: 13, title: 'Инструктор'},
+        // ],
 
         languages: [
             {uid: 'ru', title: 'Русский'},
@@ -36,38 +39,39 @@ export default {
         ],
 
         // tour
-        tourCategory: [
-            {id: 1, title: 'Групповые экскурсии/туры'},
-            {id: 2, title: 'Обзорные экскурсии/туры'},
-            {id: 3, title: 'Авторские экскурсии/туры'},
-            {id: 4, title: 'Гастрономические экскурсии/туры'},
-            {id: 5, title: 'Экскурсии на автомобиле'},
-            {id: 6, title: 'Пешеходные экскурсии'},
-            {id: 7, title: 'Велотур/ велопоход'},
-            {id: 8, title: 'Шопинг /шопинг тур'},
-            {id: 9, title: 'Фотосессия'},
-            {id: 10, title: 'Экскурсии по крышам'},
-            {id: 11, title: 'Детские экскурсии/туры'},
-            {id: 12, title: 'Паломничество'},
-            {id: 13, title: 'Трансфер'},
-            {id: 14, title: 'Круиз'},
-            {id: 15, title: 'Квест'},
-            {id: 16, title: 'Оздоровительный тур'},
-            {id: 17, title: 'Восхождение в горы'},
-            {id: 18, title: 'Дайвинг'},
-            {id: 19, title: 'Джиппинг'},
-            {id: 20, title: 'Йога тур'},
-            {id: 21, title: 'Свадебная церемония'},
-            {id: 22, title: 'Сноркелинг / снорклинг'},
-            {id: 23, title: 'Экстрим'},
-            {id: 24, title: 'Ночные экскурсии'},
-            {id: 25, title: 'Полеты'},
-            {id: 26, title: 'Музеи'},
-            {id: 27, title: 'Достопримечательности'},
-            {id: 28, title: 'Рыбалка'},
-            {id: 29, title: 'Природа'},
-            {id: 30, title: 'Морские/речные туры/экскурсии'},
-        ],
+        tourCategory: [],
+        // tourCategory: [
+        //     {id: 1, title: 'Групповые экскурсии/туры'},
+        //     {id: 2, title: 'Обзорные экскурсии/туры'},
+        //     {id: 3, title: 'Авторские экскурсии/туры'},
+        //     {id: 4, title: 'Гастрономические экскурсии/туры'},
+        //     {id: 5, title: 'Экскурсии на автомобиле'},
+        //     {id: 6, title: 'Пешеходные экскурсии'},
+        //     {id: 7, title: 'Велотур/ велопоход'},
+        //     {id: 8, title: 'Шопинг /шопинг тур'},
+        //     {id: 9, title: 'Фотосессия'},
+        //     {id: 10, title: 'Экскурсии по крышам'},
+        //     {id: 11, title: 'Детские экскурсии/туры'},
+        //     {id: 12, title: 'Паломничество'},
+        //     {id: 13, title: 'Трансфер'},
+        //     {id: 14, title: 'Круиз'},
+        //     {id: 15, title: 'Квест'},
+        //     {id: 16, title: 'Оздоровительный тур'},
+        //     {id: 17, title: 'Восхождение в горы'},
+        //     {id: 18, title: 'Дайвинг'},
+        //     {id: 19, title: 'Джиппинг'},
+        //     {id: 20, title: 'Йога тур'},
+        //     {id: 21, title: 'Свадебная церемония'},
+        //     {id: 22, title: 'Сноркелинг / снорклинг'},
+        //     {id: 23, title: 'Экстрим'},
+        //     {id: 24, title: 'Ночные экскурсии'},
+        //     {id: 25, title: 'Полеты'},
+        //     {id: 26, title: 'Музеи'},
+        //     {id: 27, title: 'Достопримечательности'},
+        //     {id: 28, title: 'Рыбалка'},
+        //     {id: 29, title: 'Природа'},
+        //     {id: 30, title: 'Морские/речные туры/экскурсии'},
+        // ],
 
         // People category
         peopleCategory: [
@@ -99,8 +103,30 @@ export default {
 
     },
 
+    actions: {
+        // Get category
+        async apiCategory(store) {
+            await axios.get('/api/category/list').then(r => r.data)
+                .then(response => {
+                    store.commit('setCategory', response)
+                })
+        },
+        // Get service
+        async apiService(store) {
+            await axios.get('/api/service/list').then(r => r.data)
+                .then(response => {
+                    store.commit('setService', response)
+                })             
+            },
+    },
+
     mutations: {
-        
+        setCategory(state, payload) {
+            state.tourCategory = payload
+        },
+        setService(state, payload) {
+            state.services = payload
+        }
     },
 
     getters: {

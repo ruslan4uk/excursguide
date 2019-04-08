@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "owl.carousel2": "^2.2.1",
         "vue-click-outside": "^1.0.7",
         "vuex": "^3.1.0"
     }

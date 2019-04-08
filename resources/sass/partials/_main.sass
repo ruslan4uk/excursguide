@@ -1,0 +1,84 @@
+// Main page style
+.main
+    background-image: url(/images/topBg.jpg)
+    background-repeat: no-repeat
+    background-position: center 
+    background-size: cover
+    min-height: 100vh
+    &__title
+        font-size: 3.75rem
+        font-weight: 700
+        color: #ffffff
+        line-height: 1.2
+    &__subtitle
+        font-size: 1.825rem
+        font-weight: 400
+        color: #ffffff
+
+
+
+// Main search
+.main-search
+    position: relative
+    & input 
+        background: #ffffff
+        border: 1px solid #ffffff
+        border-radius: 35px
+        font-size: 0.875rem
+        width: 100%
+        color: #9ea3a8
+        font-weight: 400
+        height: 3rem
+        padding: 0.5rem 5rem 0.5rem 2rem
+        @media (min-width: 768px) 
+            padding: 1rem 5rem 1rem 2rem
+            height: 3.75rem
+        &::placeholder 
+            color: #9ea3a8
+        &:focus, &:active
+            border: 1px solid #ffffff
+        &.active 
+            border-radius: 35px 35px 0 0
+    &__btn
+        height: 3rem
+        padding: 0.5rem 2rem
+        font-size: 1.125rem
+        font-weight: 400
+        position: absolute
+        top: 0
+        right: 0
+        border-radius: 35px
+        display: flex
+        justify-content: center
+        align-items: center
+        align-content: center
+        cursor: pointer
+        color: #ffffff
+        background: #5eb6fe
+        background: -moz-linear-gradient(left, #5eb6fe 0%, #60c1fd 50%, #62d1fd 100%)
+        background: -webkit-linear-gradient(left, #5eb6fe 0%,#60c1fd 50%,#62d1fd 100%)
+        background: linear-gradient(to right, #5eb6fe 0%,#60c1fd 50%,#62d1fd 100%)
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5eb6fe', endColorstr='#62d1fd',GradientType=1 )
+        @media (min-width: 768px) 
+            height: 3.75rem
+            padding: 1rem 2rem
+
+    &__suggest
+        background: #ffffff
+        border-radius: 0 0 30px 30px
+        position: absolute
+        width: 100%
+        box-shadow: 0 5px 5px 2px rgba(0,0,0,.1)
+        padding: 0.5rem 0 0.75rem
+        border-top: 1px solid #eeeeee
+        max-height: 15rem
+        overflow-y: scroll
+        &-link 
+            color: #444444
+            padding: 0.5rem 2rem
+            display: block
+            font-size: 0.875rem
+        &-item   
+            border-bottom: 1px solid #eeeeee
+            &:last-child
+                border-bottom: 0

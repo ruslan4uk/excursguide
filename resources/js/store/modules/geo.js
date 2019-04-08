@@ -10,8 +10,6 @@ export default {
         async searchName (store, name) {
             await axios.get('/api/geo?q=' + name).then(r => r.data)
                 .then(response => {
-                    console.log(response);
-                    
                     store.commit('setCities', response)
                 })
         },

@@ -4,7 +4,7 @@
             <img :src="avatar + timestamp" alt="" class="border25">                 
         </div>
         <!-- <a href="" class="profile__avatar-upload">Добавить фото</a> -->
-        <label for="profile-avatar" class="profile__avatar-upload">Добавить фото</label>
+        <label for="profile-avatar" class="profile__avatar-upload">Добавить обложку экскурсии</label>
         <input type="file" name="avatar" ref="avatar" id="profile-avatar" class="profile__avatar-uploader" @change="changeAvatar">
     </div>
 </template>

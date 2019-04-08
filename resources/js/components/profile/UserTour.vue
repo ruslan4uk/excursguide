@@ -335,11 +335,15 @@ export default {
                                 'setServices', 'setOtherRate', 'setOtherItem', 'setAbout', 'setCategory', 
                                 'setPeopleCategory', 'setPeopleCount', 'setTiming', 'setCurrency', 'setPrice', 'setPriceType']),
 
+        ...mapActions('config', ['apiCategory', 'apiService']),
         submitForm() {
             this.saveTour();
         },
     },
     mounted() {
+        // get category from api
+        this.apiCategory();
+        // get tour data from api
         this.getTour(this.t);
     },
 }

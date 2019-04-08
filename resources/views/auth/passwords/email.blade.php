@@ -4,7 +4,7 @@
 
 <section class="auth mt-md-5">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="row align-items-center justify-content-center justify-content-lg-between">
             <div class="col-12 col-md-8 col-lg-6 mb-5">
                     <img src=" {{ asset('images/auth/login.png') }}" alt="">
                 </div>

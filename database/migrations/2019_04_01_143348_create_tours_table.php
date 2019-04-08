@@ -31,7 +31,7 @@ class CreateToursTable extends Migration
             $table->string('services')->nullable();
             $table->string('other_rate')->nullable();
             $table->string('other_item')->nullable();
-            $table->string('about')->nullable();
+            $table->text('about')->nullable();
             $table->json('photo')->nullable();
             $table->string('active')->default(0);
             $table->string('status')->default(0);
