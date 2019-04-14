@@ -1,7 +1,8 @@
 // Guide
 .guide
     &__avatar
-        max-width: 13rem
+        & img
+            max-width: 13rem
     &__name
         font-size: 1.25rem
         font-weight: 400
@@ -10,6 +11,10 @@
         font-size: 0.875rem
         & strong 
             font-weight: 500
+        
+    // comment
+    &__comments-item
+        border-bottom: 1px solid #eeeeee
         
     
     
@@ -38,3 +43,8 @@
             font-size: 1.5rem
             line-height: 1
             padding-top: 0.5rem
+        
+    // mobile
+    &__mobile-avatar
+        display: block
+        max-width: 6rem

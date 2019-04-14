@@ -28,10 +28,12 @@ export default {
             
             axios.post('/api/profile', object)
                 .then(response => {
+                    //return redirect('/'); 
                     store.commit('deleteErrors')
                     store.commit('setSuccess', response.data)
                 })
                 .catch(errors => {
+                    //console.log(errors);
                     store.commit('setErrors', errors.response.data.errors)
                     store.commit('deleteSuccess')
                 })

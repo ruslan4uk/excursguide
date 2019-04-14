@@ -19,4 +19,20 @@
     </div>
 </section>
 
+<section class="main-popular mt-5 mb-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-5">Популярные направления</h4>
+            </div>
+            <a href="" class="col-12 col-md-4 col-lg-3 main-popular__link mb-2">Рим</a>
+            <a href="" class="col-12 col-md-4 col-lg-3 main-popular__link mb-2">Москва</a>
+            <a href="" class="col-12 col-md-4 col-lg-3 main-popular__link mb-2">Санкт - Питербург</a>
+            <a href="" class="col-12 col-md-4 col-lg-3 main-popular__link mb-2">Нижний Новгород</a>
+            <a href="" class="col-12 col-md-4 col-lg-3 main-popular__link mb-2">Нью - Йорк</a>
+            <a href="" class="col-12 col-md-4 col-lg-3 main-popular__link mb-2">Лос Анжелес</a>
+        </div>
+    </div>
+</section>
+
 @endsection

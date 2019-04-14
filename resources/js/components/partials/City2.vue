@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col">
+        <div class="col-12 col-md">
             <div class="locations">
                 <div class="locations__list" v-if="city.length > 0">
                     <div class="custom-input mb-3" v-for="(item,index) in city" :key="index">

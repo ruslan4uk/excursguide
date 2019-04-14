@@ -13,13 +13,33 @@
         <div class="col-12 mb-4">
             <div class="subnavigation border25">
                 <div class="subnavigation__list d-flex">
-                    <a href="{{ route('catalogTours', $id) }}" class="subnavigation__item border25 {{ (Route::current()->getName() == 'catalogTours') ? 'is-active' : 'null' }}">Экскурсии</a>
+                    <a href="{{ route('catalogTours', $id) }}" class="subnavigation__item border25 {{ (Route::current()->getName() == 'catalogTours' || Route::current()->getName() == 'catalogCategory') ? 'is-active' : 'null' }}">Экскурсии</a>
                     <a href="{{ route('catalogGuides', $id) }}" class="subnavigation__item border25 {{ (Route::current()->getName() == 'catalogGuides') ? 'is-active' : 'null' }}">Гиды</a>
                     <a href="" class="subnavigation__item border25 {{ (Route::current()->getName() == '') ? 'is-active' : 'null' }}">Достопримечательности</a>
                 </div>
             </div>
         </div>
-        
+    </div>
+</div>
+
+{{-- Категории --}}
+<div class="mt-2 mb-5">
+    <div class="container">
+        <div class="tour-category border25 py-5 px-5">
+            <div class="row">
+                <div class="col-12 mb-3"><div class="tour-category__title">Категории экскурсий</div></div>
+                @foreach ($categories as $category)
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <a href="{{ route('catalogCategory', ['id' => $id, 'category' => $category->id]) }}" class="tour-category__link mb-1">{{ $category->title }}</a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">        
         @foreach ($tours as $tour)
             <div class="col-12 col-sm-6 col-lg-3 mb-4">
                 <div class="tour-item border25 block-shadow block-shadow-hover">
@@ -27,7 +47,7 @@
                         @if ($tour->avatar)
                             <img src="{{ asset($tour->avatar) }}" alt="" class="border25 mb-3">
                         @else 
-                            <img src="https://via.placeholder.com/400" alt="" class="border25 mb-3">
+                            <img src="/images/general/blank.png" alt="" class="border25 mb-3">
                         @endif
                     </a>
                     <a href="{{ route('tourIndex', $tour->id) }}" class="tour-item__title mb-3">{{ $tour->name }}</a>

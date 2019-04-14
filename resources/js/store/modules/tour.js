@@ -14,8 +14,7 @@ export default {
         async getTour(store, id) {
             await axios.get('/api/profile/tours/' + id).then(r => r.data)
                 .then(response => {
-                    console.log(response);
-                    
+                    //console.log(response);
                     store.commit('setTour', response)
                 })
         },
@@ -24,13 +23,12 @@ export default {
                 .then(response => {
                     store.commit('deleteErrors')
                     store.commit('setSuccess', response.data)
-                    console.log('success' ,response.data);
-                    
+                    //console.log('success' ,response.data);                    
                 })
                 .catch(errors => {
                     store.commit('setErrors', errors.response.data.errors)
                     store.commit('deleteSuccess')
-                    console.log('error', errors.response.data.errors);
+                    //console.log('error', errors.response.data.errors);
                     //if(errors.response.data.errors.message === 'Unauthenticated') window.location.reload(true); 
                 })
         },
@@ -140,7 +138,6 @@ export default {
         tour (state) {
             return state.tour
         },
-
         errors (state) {
             return state.errors
         },

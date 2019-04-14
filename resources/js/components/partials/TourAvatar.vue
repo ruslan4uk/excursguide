@@ -15,7 +15,7 @@ export default {
     props: ['tourId'],
     data() {
         return {
-            comAvatar: this.avatar || '/images/general/avatar-blank.jpg',
+            comAvatar: this.avatar || '/images/general/blank.png',
             image: '',
             timestamp: '',
         }
@@ -24,7 +24,7 @@ export default {
         ...mapGetters('tour', ['tour']),
 
         avatar() {
-            return this.tour.avatar ? this.tour.avatar : '/images/general/avatar-blank.jpg'
+            return this.tour.avatar ? this.tour.avatar : '/images/general/blank.png'
         },
     },
     methods: {

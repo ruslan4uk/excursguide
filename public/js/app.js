@@ -2277,14 +2277,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   props: ['tourId'],
   data: function data() {
     return {
-      comAvatar: this.avatar || '/images/general/avatar-blank.jpg',
+      comAvatar: this.avatar || '/images/general/blank.png',
       image: '',
       timestamp: ''
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tour', ['tour']), {
     avatar: function avatar() {
-      return this.tour.avatar ? this.tour.avatar : '/images/general/avatar-blank.jpg';
+      return this.tour.avatar ? this.tour.avatar : '/images/general/blank.png';
     }
   }),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])('tour', ['setAvatar']), {
@@ -43764,7 +43764,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col" }, [
+    _c("div", { staticClass: "col-12 col-md" }, [
       _c("div", { staticClass: "locations" }, [
         _vm.city.length > 0
           ? _c(
@@ -44623,7 +44623,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-3" }, [
+    _c("div", { staticClass: "col-4 col-md-3" }, [
       _c(
         "div",
         {
@@ -44677,7 +44677,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-9" }, [
+    _c("div", { staticClass: "col-8 col-md-9" }, [
       _c("div", { staticClass: "form-group custom-input mb-3" }, [
         _c("input", {
           staticClass: "form-control",
@@ -44785,7 +44785,7 @@ var render = function() {
     _vm.user_data.contacts
       ? _c(
           "div",
-          { staticClass: "col" },
+          { staticClass: "col-12 col-md" },
           _vm._l(_vm.user_data.contacts, function(item, index) {
             return _c("contact-item", {
               key: index,
@@ -60900,9 +60900,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var object = store.state.profile;
       object.user_data = store.state.user_data;
       axios.post('/api/profile', object).then(function (response) {
+        //return redirect('/'); 
         store.commit('deleteErrors');
         store.commit('setSuccess', response.data);
       }).catch(function (errors) {
+        //console.log(errors);
         store.commit('setErrors', errors.response.data.errors);
         store.commit('deleteSuccess');
       });
@@ -61044,7 +61046,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.get('/api/profile/tours/' + id).then(function (r) {
                   return r.data;
                 }).then(function (response) {
-                  console.log(response);
+                  //console.log(response);
                   store.commit('setTour', response);
                 });
 
@@ -61065,12 +61067,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     saveTour: function saveTour(store, id) {
       axios.post('/api/profile/tours/' + id, store.state.tour).then(function (response) {
         store.commit('deleteErrors');
-        store.commit('setSuccess', response.data);
-        console.log('success', response.data);
+        store.commit('setSuccess', response.data); //console.log('success' ,response.data);                    
       }).catch(function (errors) {
         store.commit('setErrors', errors.response.data.errors);
-        store.commit('deleteSuccess');
-        console.log('error', errors.response.data.errors); //if(errors.response.data.errors.message === 'Unauthenticated') window.location.reload(true); 
+        store.commit('deleteSuccess'); //console.log('error', errors.response.data.errors);
+        //if(errors.response.data.errors.message === 'Unauthenticated') window.location.reload(true); 
       });
     }
   },

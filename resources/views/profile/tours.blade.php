@@ -23,7 +23,7 @@
                         @if ($tour->avatar)
                             <img src="{{ asset($tour->avatar) }}" alt="" class="border25 mb-3">
                         @else 
-                            <img src="https://via.placeholder.com/400" alt="" class="border25 mb-3">
+                            <img src="/images/general/blank.png" alt="" class="border25 mb-3">
                         @endif
                     </a>
                     <a href="{{ route('tourEdit', $tour->id) }}" class="tour-item__title mb-3">{{ $tour->name }}</a>

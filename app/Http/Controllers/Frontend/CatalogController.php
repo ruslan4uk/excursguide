@@ -20,7 +20,27 @@ class CatalogController extends Controller
     {
         $tours = Tour::where('location', $id)->where('active', 2)->get();
 
-        return view('frontend.catalog.tours', compact('tours', 'id'));
+        $categories = \App\Category::all();
+
+        return view('frontend.catalog.tours', compact('tours', 'id', 'categories'));
+    }
+
+    /**
+     * Category view
+     *
+     * @param [type] $id
+     * @return void
+     */
+    public function category ($id, $category) 
+    {
+        $tours = Tour::where('location', $id)
+                    ->where('active', 2)    
+                    ->where('category', $category)
+                    ->get();
+
+        $categories = \App\Category::all();
+
+        return view('frontend.catalog.tours', compact('tours', 'id', 'categories'));
     }
 
     /**

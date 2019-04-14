@@ -23,7 +23,7 @@
         @foreach ($guides as $guide)
             <div class="col-12 mb-3 mt-1">
                 <div class="row">
-                    <div class="col-2">
+                    <div class="col-4 col-md-2 d-none d-md-block">
                         <a href="{{ route('guideIndex', $guide->id) }}">
                             @if ($guide->userData->avatar)
                                 <img src="{{ asset($guide->userData->avatar) }}" alt="" class="border25 mb-3">
@@ -32,11 +32,11 @@
                             @endif
                         </a>
                     </div>
-                    <div class="col-10">
+                    <div class="col-12 col-md-10">
                         <div class="guide-item border25">
                             <a href="{{ route('guideIndex', $guide->id) }}" class="guide-item__name mb-2">{{ $guide->name }}</a>
                             <div class="guide-item__count-tour mb-2">{{ count($guide->activeTours) }} {{ Lang::choice('экскурсия|экскурсии|экскурсий', count($guide->activeTours), [], 'ru') }}</div>
-                            <div class="guide-item__about">{{ substr($guide->userData->about, 0, 100) }}</div>
+                            <div class="guide-item__about mb-3">{{ substr($guide->userData->about, 0, 500) }}...</div>
                             <div class="d-flex justify-content-end align-item-center">
                                 <a href="{{ route('guideIndex', $guide->id) }}" class="guide-item__more">Подробнее <i class="fas fa-angle-right"></i></a>
                             </div>

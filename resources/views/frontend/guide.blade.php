@@ -8,7 +8,7 @@
 <section class="guide">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-lg-3 pr-lg-4 mb-4">
+            <div class="col-12 col-lg-3 pr-lg-4 mb-4 text-center text-md-left">
                 <div class="guide__avatar mb-3">
                     @if ($guide->userData->avatar)
                         <img src="{{ $guide->userData->avatar }}" alt="" class="border25">
@@ -86,13 +86,13 @@
                             <div class="title mb-3">Экскурсии</div>
                             <div class="row">
                                 @foreach ($guide->userTour as $tour)
-                                    <div class="col-6 col-sm-6 col-lg-4 mb-4">
+                                    <div class="col-12 col-sm-6 col-lg-4 mb-4">
                                         <div class="border25">
                                             <a href="{{ route('tourIndex', $tour->id) }}">
                                                 @if ($tour->avatar)
                                                     <img src="{{ asset($tour->avatar) }}" alt="" class="border25 mb-3">
                                                 @else 
-                                                    <img src="https://via.placeholder.com/400" alt="" class="border25 mb-3">
+                                                    <img src="/images/general/blank.png" alt="" class="border25 mb-3">
                                                 @endif
                                             </a>
                                             <a href="{{ route('tourIndex', $tour->id) }}" class="subtitle d-block mb-2">{{ $tour->name }}</a>
@@ -132,19 +132,19 @@
                         <div class="guide__comments">
                             @if (count($comments) > 0)
                                 @foreach ($comments as $comment)
-                                    <div class="row mb-3">
-                                        <div class="col-2">
+                                    <div class="row mb-4 pb-4 guide__comments-item">
+                                        <div class="col-4 col-md-2">
                                             @if ($comment->userData->avatar)
                                                 <a href="{{ route('guideIndex', $comment->userData->user_id) }}">
-                                                    <img src="{{ asset($comment->userData->avatar) }}" alt="" class="border25 mb-3">
+                                                    <img src="{{ asset($comment->userData->avatar) }}" alt="" class="border25 mb-3 mb-md-0">
                                                 </a>
                                             @else 
                                                 <a href="{{ route('guideIndex', $comment->userData->user_id) }}">
-                                                    <img src="https://via.placeholder.com/400" alt="" class="border25 mb-3">
+                                                    <img src="https://via.placeholder.com/400" alt="" class="border25 mb-3 mb-md-0">
                                                 </a>
                                             @endif
                                         </div>
-                                        <div class="col-10">
+                                        <div class="col-12 col-md-10">
                                             <a href="{{ route('guideIndex', $comment->userData->user_id) }}">
                                                 <div class="title">{{$comment->user->name}}</div>
                                             </a>

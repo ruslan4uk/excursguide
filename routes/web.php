@@ -20,6 +20,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+// Pages
+Route::get('/about', function() {
+    return view('frontend.pages.about');
+})->name('about');
+
+
 // profile
 Route::resource('/profile', 'Profile\ProfileController')->middleware('auth');
 
@@ -62,6 +68,7 @@ Route::get('/s', 'Api\GeodataController@search')->name('mainSearch');
 // Catalog
 Route::get('/city/{id}/tours', 'Frontend\CatalogController@tours')->name('catalogTours');
 Route::get('/city/{id}/guides', 'Frontend\CatalogController@guides')->name('catalogGuides');
+Route::get('/city/{id}/tours/category-{category}', 'Frontend\CatalogController@category')->name('catalogCategory');
 
 // Pages
 Route::get('/tour/{id}', 'Frontend\TourController@index')->name('tourIndex');

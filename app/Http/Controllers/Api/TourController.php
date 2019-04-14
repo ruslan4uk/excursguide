@@ -14,26 +14,7 @@ use App\Http\Controllers\Controller;
 
 class TourController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -43,8 +24,6 @@ class TourController extends Controller
     public function store(Request $request, $id)
     {
         
-        //return $request->all();
-
         $request->validate([
             'name'              => ['required', 'string', 'max:255'],
             'location'          => ['required'],
@@ -58,7 +37,6 @@ class TourController extends Controller
             'price'             => ['required'],
             'currency'          => ['required'],
             'price_type'        => ['required'],
-
             'services'          => ['required'],
             'other_rate'        => ['required'],
             'other_item'        => ['required'],
@@ -84,7 +62,7 @@ class TourController extends Controller
             'other_item'        => $request->get('other_item'),
             'about'             => $request->get('about'),
 
-            'active'            => 1,
+            'active'            => 2,
         ]);
 
 
@@ -180,18 +158,17 @@ class TourController extends Controller
         return response()->json($license);
     }
 
-    public function deleteLicense (Request $request) {
-
-        $tour = Tour::where('id', Auth::id())->where('id', $request->get('tour_id'))->firstOrFail();
+    public function deleteLicense (Request $request) 
+    {
+        $tour = Tour::where('user_id', Auth::id())->where('id', $request->get('tour_id'))->firstOrFail();
         $tour_photo = $tour->photo;
-        //return $tour_photo;
 
         if($request->get('id') >= 0 && is_numeric($request->get('id'))) {
             Storage::disk('public')->delete('users/' . Auth::id() . '/tour/' . $request->get('tour_id') . '/'. $tour_photo{$request->get('id')}->filename);
             Storage::disk('public')->delete('users/' . Auth::id() . '/tour/' . $request->get('tour_id') . '/'. $tour_photo{$request->get('id')}->filename_crop);
             \array_splice($tour_photo, $request->get('id'), 1);
  
-            Tour::where('id', Auth::id())->where('id', $request->get('tour_id'))->update([
+            Tour::where('user_id', Auth::id())->where('id', $request->get('tour_id'))->update([
                 'photo' => json_encode($tour_photo),
             ]);
             return response()->json($tour_photo);

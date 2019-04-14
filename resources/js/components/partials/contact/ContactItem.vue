@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-3">
+        <div class="col-4 col-md-3">
             <div class="form-group custom-input position-relative mb-3" v-click-outside="hide">
                 <div class="contact-type" @click="suggest = !suggest">{{label()}}</div>
                 <div class="suggest-type" v-if="type.length > 0 && suggest">
@@ -11,7 +11,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-9">
+        <div class="col-8 col-md-9">
             <div class="form-group custom-input mb-3">
                 <input type="text" name="" :id="'contact_' + index" class="form-control" :value="itemContact.value" placeholder="Введите" @input="updateInput($event.target.value)">
                 <label :for="'contact_' + index">Введите</label>

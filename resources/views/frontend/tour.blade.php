@@ -16,14 +16,14 @@
                             @if ($tour->userData->avatar)
                                 <img src="{{ asset($tour->userData->avatar) }}" alt="" class="border25">
                             @else 
-                                <img src="https://via.placeholder.com/400" alt="" class="border25">
+                                <img src="/images/general/avatar-blank.jpg" alt="" class="border25">
                             @endif
                         </a>
                         <a href="{{ route('guideIndex', $tour->user->id) }}" class="tour__guide-name">{{ $tour->user->name }}</a>
                     </div>
 
                     <div class="d-block mb-3">
-                        <div class="subtitle mb-2">Услуги:</div>
+                        <div class="subtitle mb-0">Услуги:</div>
                         <div class="tour__services">
                             {{ $tour->user->services()->pluck('title')->implode(', ') }}
                         </div>
@@ -31,7 +31,7 @@
 
                     @if ($tour->userData->contacts)
                     <div class="tour__contact">
-                        <div class="subtitle mb-2">Контакты:</div>
+                        <div class="subtitle mb-0">Контакты:</div>
                         @foreach ($tour->userData->contacts as $contact)
                             <div class="tour__contact-item mb-1">
                                 {!! $tour->userData->contact_type($contact->type_id) !!}

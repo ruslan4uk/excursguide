@@ -3,7 +3,7 @@
         <div class="row align-items-center">
             <div class="col-4 col-md-6">
                 <a href="/" class="logo mr-md-5">EG</a>
-                <a href="" class="navigation__link d-none d-md-inline">О нас</a>
+                <a href="{{ route('about') }}" class="navigation__link d-none d-md-inline">О нас</a>
                 <a href="" class="navigation__link d-none d-md-inline">Обратная связь</a>
             </div>
             <div class="d-flex col-8 col-md-6 ml-auto justify-content-end">
@@ -29,7 +29,7 @@
                             </div>
                             <hr />
                             <div class="navigation__submenu-item">
-                                <a href="" class="navigation__submenu-link">О нас</a>
+                                <a href="{{ route('about') }}" class="navigation__submenu-link">О нас</a>
                             </div>
                             <div class="navigation__submenu-item">
                                 <a href="" class="navigation__submenu-link">Обратная связь</a>

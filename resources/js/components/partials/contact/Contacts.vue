@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col" v-if="user_data.contacts">
+        <div class="col-12 col-md" v-if="user_data.contacts">
             <contact-item 
                 v-for="(item, index) in user_data.contacts" 
                 :key="index" 
