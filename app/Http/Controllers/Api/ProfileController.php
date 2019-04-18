@@ -58,7 +58,7 @@ class ProfileController extends Controller
             'user_data.contacts.*.type_id'  => ['required'],
             'user_data.services'            => ['required'],
             'user_data.about'               => ['required', 'string', 'min:50', 'max:2000'],
-            'user_data.user_files'          => ['required'],
+            //'user_data.user_files'          => ['required'],
         ]);
 
         $user = User::where('id', Auth::id())->with('userData')->first();

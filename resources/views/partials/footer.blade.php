@@ -4,8 +4,8 @@
             <div class="col-12 col-md-8 d-flex align-items-center">
                 <a href="" class="logo mr-4">EG</a>
                 <div class="footer__info">
-                    <p>Служба поддержки: <a href="mailto:support@excursguide.ru">support@excursguide.ru</a>,</p> 
-                    <p>+7 (499) 950-15-50</p>
+                    <p>Служба поддержки: <a href="mailto:support@excursguide.ru"> </a></p> 
+                    {{-- <p>+7 (499) 950-15-50</p> --}}
                     <a href="">Политика конфиденциальности</a>
                 </div>
             </div>

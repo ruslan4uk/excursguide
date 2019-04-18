@@ -44994,9 +44994,7 @@ var render = function() {
                     _vm._v("Расскажите туристам о себе")
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "card-title-small mb-3" }, [
-                    _vm._v("Это позволит привлечь больше внимания к Вам")
-                  ]),
+                  _vm._m(0),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group custom-input" }, [
                     _c("textarea", {
@@ -45093,7 +45091,7 @@ var render = function() {
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm._m(0)
+              _vm._m(1)
             ]
           )
         ])
@@ -45102,6 +45100,19 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-title-small mb-3" }, [
+      _vm._v(
+        "не использовать тексты с других сайтов. Проверить уникальность текста "
+      ),
+      _c("a", { attrs: { href: "text.ru", target: "_blank" } }, [
+        _vm._v("text.ru")
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -45665,7 +45676,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("div", { staticClass: "form-helper" }, [
                             _vm._v(
-                              "Введите через запятую услуги, которые входят в экскурсию"
+                              "Введите через запятую дополнительные расходы"
                             )
                           ]),
                           _vm._v(" "),
@@ -45742,11 +45753,7 @@ var render = function() {
                     _vm._v("Расскажите туристам об экскурсии")
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "card-title-small mb-3" }, [
-                    _vm._v(
-                      "не использовать тексты с других сайтов. Проверить уникальность текста text.ru"
-                    )
-                  ]),
+                  _vm._m(0),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group custom-input" }, [
                     _c("textarea", {
@@ -45834,7 +45841,7 @@ var render = function() {
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm._m(0)
+              _vm._m(1)
             ]
           )
         ])
@@ -45843,6 +45850,19 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-title-small mb-3" }, [
+      _vm._v(
+        "не использовать тексты с других сайтов. Проверить уникальность текста "
+      ),
+      _c("a", { attrs: { href: "text.ru", target: "_blank" } }, [
+        _vm._v("text.ru")
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -60543,38 +60563,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }],
     // tour
     tourCategory: [],
-    // tourCategory: [
-    //     {id: 1, title: 'Групповые экскурсии/туры'},
-    //     {id: 2, title: 'Обзорные экскурсии/туры'},
-    //     {id: 3, title: 'Авторские экскурсии/туры'},
-    //     {id: 4, title: 'Гастрономические экскурсии/туры'},
-    //     {id: 5, title: 'Экскурсии на автомобиле'},
-    //     {id: 6, title: 'Пешеходные экскурсии'},
-    //     {id: 7, title: 'Велотур/ велопоход'},
-    //     {id: 8, title: 'Шопинг /шопинг тур'},
-    //     {id: 9, title: 'Фотосессия'},
-    //     {id: 10, title: 'Экскурсии по крышам'},
-    //     {id: 11, title: 'Детские экскурсии/туры'},
-    //     {id: 12, title: 'Паломничество'},
-    //     {id: 13, title: 'Трансфер'},
-    //     {id: 14, title: 'Круиз'},
-    //     {id: 15, title: 'Квест'},
-    //     {id: 16, title: 'Оздоровительный тур'},
-    //     {id: 17, title: 'Восхождение в горы'},
-    //     {id: 18, title: 'Дайвинг'},
-    //     {id: 19, title: 'Джиппинг'},
-    //     {id: 20, title: 'Йога тур'},
-    //     {id: 21, title: 'Свадебная церемония'},
-    //     {id: 22, title: 'Сноркелинг / снорклинг'},
-    //     {id: 23, title: 'Экстрим'},
-    //     {id: 24, title: 'Ночные экскурсии'},
-    //     {id: 25, title: 'Полеты'},
-    //     {id: 26, title: 'Музеи'},
-    //     {id: 27, title: 'Достопримечательности'},
-    //     {id: 28, title: 'Рыбалка'},
-    //     {id: 29, title: 'Природа'},
-    //     {id: 30, title: 'Морские/речные туры/экскурсии'},
-    // ],
     // People category
     peopleCategory: [{
       id: 1,

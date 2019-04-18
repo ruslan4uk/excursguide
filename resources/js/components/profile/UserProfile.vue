@@ -70,7 +70,7 @@
                         <div class="card block-shadow border25 mb-4">
                             <div class="card-body">
                                 <div class="card-title mb-0">Расскажите туристам о себе</div>
-                                <div class="card-title-small mb-3">Это позволит привлечь больше внимания к Вам</div>
+                                <div class="card-title-small mb-3">не использовать тексты с других сайтов. Проверить уникальность текста <a href="text.ru" target="_blank">text.ru</a></div>
                                 <div class="form-group custom-input">
                                     <textarea name="about" id="userdata_about" wrap="soft" cols="30" rows="10" 
                                             :class="'form-control' 

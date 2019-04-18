@@ -226,7 +226,7 @@
                                                     :value="tour.other_rate" @input="setOtherRate($event.target.value)"
                                                     placeholder="Дополнительные расходы">
                                             <label for="tour_other_rate">Дополнительные расходы</label>
-                                            <div class="form-helper">Введите через запятую услуги, которые входят в экскурсию</div>
+                                            <div class="form-helper">Введите через запятую дополнительные расходы</div>
                                             <span class="invalid-feedback" role="alert" v-if="errors.other_rate">
                                                 <strong>{{ errors.other_rate[0] }}</strong>
                                             </span>
@@ -259,7 +259,7 @@
                         <div class="card block-shadow border25 mb-4">
                             <div class="card-body">
                                 <div class="card-title mb-0">Расскажите туристам об экскурсии</div>
-                                <div class="card-title-small mb-3">не использовать тексты с других сайтов. Проверить уникальность текста text.ru</div>
+                                <div class="card-title-small mb-3">не использовать тексты с других сайтов. Проверить уникальность текста <a href="text.ru" target="_blank">text.ru</a></div>
                                 <div class="form-group custom-input">
                                     <textarea name="tour" id="tour_about" cols="30" rows="10" 
                                             :class="'form-control' 
