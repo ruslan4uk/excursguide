@@ -23,7 +23,8 @@ class TourController extends Controller
      */
     public function store(Request $request, $id)
     {
-        
+        //return response()->json($request);
+
         $request->validate([
             'name'              => ['required', 'string', 'max:255'],
             'location'          => ['required'],
@@ -41,6 +42,7 @@ class TourController extends Controller
             'other_rate'        => ['required'],
             'other_item'        => ['required'],
             'about'             => ['required', 'string', 'min:50', 'max:2000'],
+            'photo'             => ['required'],
         ]);
 
         $tour = Tour::where('user_id', Auth::id())->where('id', $id)->update([

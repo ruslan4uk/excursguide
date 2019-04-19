@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="main-search mt-5">
-            <input type="text" name="" id="" v-model="searchInput" :class="{ active: suggestFlag }" class="main-search__input" placeholder="Введите страну" @keyup="search($event.target.value)">
+            <input type="text" name="" id="" v-model="searchInput" :class="{ active: suggestFlag }" class="main-search__input" placeholder="Введите город" @keyup="search($event.target.value)">
             <div class="main-search__btn btn-gradient">От винта!</div>
             <div class="main-search__suggest" v-if="suggestFlag" v-click-outside="hide">
                 <div class="main-search__suggest-item" v-for="(item, index) in suggest" :key="index">
@@ -15,37 +15,40 @@
 </template>
 
 <script>
-import ClickOutside from 'vue-click-outside'
+import ClickOutside from "vue-click-outside";
 export default {
     data() {
         return {
-            searchInput: '',
+            searchInput: "",
             suggest: [],
-            suggestFlag: false,
-        }
+            suggestFlag: false
+        };
     },
     methods: {
         search(value) {
-            axios.get('s?q=' + value).then(r => r.data)
+            axios
+                .get("s?q=" + value)
+                .then(r => r.data)
                 .then(response => {
-                    this.suggest = response
+                    this.suggest = response;
                     console.log(response);
-                    
-                })
+                });
         },
         hide() {
-            this.suggest = []
-            this.suggestFlag = false 
-            this.searchInput = ''
-        },
+            this.suggest = [];
+            this.suggestFlag = false;
+            this.searchInput = "";
+        }
     },
     watch: {
         suggest: function(val) {
-            val.length > 0 ? this.suggestFlag = true : this.suggestFlag = false
-        },
+            val.length > 0
+                ? (this.suggestFlag = true)
+                : (this.suggestFlag = false);
+        }
     },
     directives: {
         ClickOutside
-    },
-}
+    }
+};
 </script>

@@ -284,8 +284,8 @@
                                     
                                     <tour-photo :data="tour.photo" ></tour-photo>
                                     
-                                    <span class="invalid-feedback d-block" role="alert" v-if="errors['user_data.user_files']">
-                                        <strong>{{errors['user_data.user_files'][0]}}</strong>
+                                    <span class="invalid-feedback d-block" role="alert" v-if="errors.photo">
+                                        <strong>{{errors.photo[0]}}</strong>
                                     </span>
                                 
                                 </div>
@@ -312,41 +312,63 @@
 </template>
 
 <script>
-import {mapActions, mapGetters, mapState, mapMutations} from 'vuex'
+import { mapActions, mapGetters, mapState, mapMutations } from "vuex";
 
-import TourCity from '../partials/TourCity'
-import Tags from '../partials/Tags'
-import VueSelect from '../partials/VueSelect'
-import TourAvatar from '../partials/TourAvatar'
-import TourPhoto from '../partials/TourPhoto'
+import TourCity from "../partials/TourCity";
+import Tags from "../partials/Tags";
+import VueSelect from "../partials/VueSelect";
+import TourAvatar from "../partials/TourAvatar";
+import TourPhoto from "../partials/TourPhoto";
 
 export default {
-    props: ['t'],
+    props: ["t"],
     components: { TourCity, Tags, VueSelect, TourAvatar, TourPhoto },
 
     computed: {
-        ...mapState('tour', ['tour', 'errors', 'success']),
-        ...mapGetters('config', ['languages', 'tourCategory', 'peopleCategory', 'tourTiming', 
-                                'tourCurrency', 'tourPriceType']),
+        ...mapState("tour", ["tour", "errors", "success"]),
+        ...mapGetters("config", [
+            "languages",
+            "tourCategory",
+            "peopleCategory",
+            "tourTiming",
+            "tourCurrency",
+            "tourPriceType"
+        ])
     },
     methods: {
-        ...mapActions('tour', ['getTour', 'saveTour']),
-        ...mapMutations('tour', ['setName', 'setLocation', 'deleteLocation', 'setRoute', 'addLang', 'deleteLang', 
-                                'setServices', 'setOtherRate', 'setOtherItem', 'setAbout', 'setCategory', 
-                                'setPeopleCategory', 'setPeopleCount', 'setTiming', 'setCurrency', 'setPrice', 'setPriceType']),
+        ...mapActions("tour", ["getTour", "saveTour"]),
+        ...mapMutations("tour", [
+            "setName",
+            "setLocation",
+            "deleteLocation",
+            "setRoute",
+            "addLang",
+            "deleteLang",
+            "setServices",
+            "setOtherRate",
+            "setOtherItem",
+            "setAbout",
+            "setCategory",
+            "setPeopleCategory",
+            "setPeopleCount",
+            "setTiming",
+            "setCurrency",
+            "setPrice",
+            "setPriceType"
+        ]),
 
-        ...mapActions('config', ['apiCategory', 'apiService']),
+        ...mapActions("config", ["apiCategory", "apiService"]),
         submitForm() {
             this.saveTour();
-        },
+        }
     },
     mounted() {
         // get category from api
         this.apiCategory();
         // get tour data from api
         this.getTour(this.t);
-    },
-}
+    }
+};
 </script>
 
 <style scoped lang="sass">
