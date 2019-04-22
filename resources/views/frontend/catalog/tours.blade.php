@@ -60,7 +60,21 @@
                         <div class="tour-item__price">
                             от 
                             <span>{{ $tour->price }}</span>
-                            <span class="rubl"><i class="fas fa-ruble-sign"></i></span> 
+                            <span class="rubl">
+                                @switch($tour->currency)
+                                    @case(643)
+                                        <i class="fas fa-ruble-sign"></i>
+                                        @break
+                                    @case(840)
+                                        <i class="fas fa-dollar-sign"></i>
+                                        @break
+                                    @case(978)
+                                        <i class="fas fa-euro-sign"></i>
+                                        @break
+                                    @default
+                                        
+                                @endswitch
+                            </span> 
                             с группы
                         </div>
                     </div>
