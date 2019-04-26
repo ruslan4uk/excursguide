@@ -2,10 +2,6 @@
 
 use Illuminate\Http\Request;
 
-// header('Access-Control-Allow-Origin:  *');
-// header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
-// header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization');
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,10 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
+/**
+ * Auth routes
+ * url: /auth/{page}
+ */
 Route::prefix('v2/auth/')->group(function () {
     Route::post('login', 'ApiV2\AuthController@login');
     Route::post('register', 'ApiV2\AuthController@register');
@@ -28,4 +24,23 @@ Route::prefix('v2/auth/')->group(function () {
     Route::post('refresh', 'ApiV2\AuthController@refresh');
     Route::post('me', 'ApiV2\AuthController@me');
     Route::post('payload', 'ApiV2\AuthController@payload');
+});
+
+Route::prefix('v2/')->middleware('role:admin')->group(function () {    
+    
+    Route::prefix('dashboard/')->group(function () {
+        Route::get('index', 'ApiV2\Dashboard\HomeController@index');
+    });
+    
+    /**
+     * Settings routes
+     * url: /settings/{page}
+     */
+    Route::prefix('settings/')->group(function () {
+        Route::resource('languages', 'ApiV2\Languages\HomeController')->only(['index', 'store', 'destroy']);
+
+        Route::resource('services', 'ApiV2\Services\HomeController')->only(['index', 'store', 'destroy']);
+
+        Route::resource('categories', 'ApiV2\Categories\HomeController')->only(['index', 'store', 'destroy']);
+    });
 });

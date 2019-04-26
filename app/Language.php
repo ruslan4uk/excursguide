@@ -4,14 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Language extends Model
 {
-    protected $table = 'categories';
+    protected $table = 'languages';
 
-    protected $fillable = ['title', 'active'];
+    protected $fillable = ['name', 'iso_code', 'active'];
 
     protected $casts = [
         'active'         => 'Boolean',
     ];
-
 }

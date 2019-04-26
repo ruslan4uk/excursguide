@@ -3,30 +3,34 @@
  * 
  * TODO: rewrite to vuejs
  */
+
 $(function() {
 // Navigation
-  $(document).on('touchend', '.js--navigation-logout', function(e) {
+  $(document).on('touchend click', '.js--navigation-logout', function(e) {
+    e.stopPropagation();
     e.preventDefault();
     $('#js--logout-form').submit();
   });
 
   // Navigation submenu
-  $(document).on('touchend', '#js--navigation-user', function(e) {
+  $(document).on('touchend click', '#js--navigation-user', function(e) {
     $('#js--navigation-submenu').toggleClass('is-opened');
     e.stopPropagation();
+    e.preventDefault();
   });
-  $(document).on('touchend', function(e) {
+  $(document).on('touchend click', function(e) {
     if ($(e.target).is('#js--navigation-submenu') === false) {
       $('#js--navigation-submenu').removeClass('is-opened');
     }
   });
 
   // Burger submenu
-  $(document).on('touchend', '#js--navigation-burger', function(e) {
+  $(document).on('touchend click', '#js--navigation-burger', function(e) {
     $('#js--navigation-burger-submenu').toggleClass('is-opened');
     e.stopPropagation();
+    e.preventDefault();
   });
-  $(document).on('touchend', function(e) {
+  $(document).on('touchend click', function(e) {
     if ($(e.target).is('#js--navigation-burger-submenu') === false) {
       $('#js--navigation-burger-submenu').removeClass('is-opened');
     }

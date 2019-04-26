@@ -19,7 +19,8 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','register']]);
+        $this->middleware('jwt.refresh')->only('refresh');
+        $this->middleware('auth:api', ['except' => ['login','register','logout','refresh']]);
     }
 
     /**
@@ -78,14 +79,28 @@ class AuthController extends Controller
                     'email' => 'Неправильный Email или пароль'
                 ]
             ], 422);
-        }
+        }  
+        
+        if (!Auth::user()->isAdmin()){
+            return response()->json([
+                'success' => false,
+                'errors' => [
+                    'email' => 'Неправильный Email или пароль'
+                ]
+            ],422);
+        } else {
+            //return $this->respondWithToken($token);
+            return response()->json([
+                'success' => true,
+                'data' => Auth::user(),
+                'token' => [
+                    'access_token' => $token,
+                    'token_type' => 'bearer',
+                    'expires_in' => auth()->factory()->getTTL() * 60
+                ],
+            ], 200);
 
-        //return $this->respondWithToken($token);
-        return response()->json([
-            'success' => true,
-            'data' => Auth::user(),
-            'token' => $token,
-        ], 200);
+        }
     }
 
     /**
