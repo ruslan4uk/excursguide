@@ -43,4 +43,20 @@ Route::prefix('v2/')->middleware('role:admin')->group(function () {
 
         Route::resource('categories', 'ApiV2\Categories\HomeController')->only(['index', 'store', 'destroy']);
     });
+
+    /**
+     * Articles
+     */
+    Route::post('articles/upload', 'ApiV2\Articles\UploadController@upload');
+    Route::resource('articles', 'ApiV2\Articles\HomeController')->only(['index', 'store', 'destroy']);
+
+
+    /**
+     * Search
+     */
+    Route::prefix('search/')->group(function () {
+        Route::get('get-country', 'ApiV2\Search\GeoController@getCountry');
+        Route::get('get-city', 'ApiV2\Search\GeoController@getCity');
+    });
 });
+
