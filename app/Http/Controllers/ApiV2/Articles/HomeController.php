@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ApiV2\Articles;
 
 use App\Article;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -31,13 +32,7 @@ class HomeController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => Article::paginate(20)
-        ]);
-    }
-
-    public function upload(Request $request) {
-        return response()->json([
-            'success' => true
+            'data' => Article::whereNotNull('title')->paginate(20)
         ]);
     }
 
@@ -48,7 +43,17 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+
+        $forDelete = Article::whereNull('title')->where('created_at', '<', Carbon::today())->delete();
+
+        $article = new Article;
+
+        if($article->save()) {
+            return response()->json([
+                'success' => true,
+                'id' => $article->id
+            ]);
+        }
     }
 
     /**
@@ -59,7 +64,23 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+        ]);
+
+        $service = Article::updateOrCreate(['id' => $request->get('id')], $request->only([
+                'title',
+                'text',
+                'country_id',
+                'city_id', 
+                'active'
+            ]));
+
+        if($service) {
+            return response()->json([
+                'success' => true,
+            ]);
+        }
     }
 
     /**
@@ -104,6 +125,10 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(Article::findOrFail($id)->delete()) {
+            return response()->json([
+                'success' => true 
+            ], 200);
+        }
     }
 }
