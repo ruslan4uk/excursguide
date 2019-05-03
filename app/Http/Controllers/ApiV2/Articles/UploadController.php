@@ -18,11 +18,16 @@ class UploadController extends Controller
     }
 
     public function upload(Request $request) {
-        $path  = $request->file->store("uploads", 'public');
+        $request->validate([
+            'page_id' => ['required', 'numeric'],
+            'file' => ['dimensions:min_width=1000,min_height=600']
+        ]);
+
+        $path  = $request->file->store("uploads/articles/" . $request->get('page_id'), 'public');
+
         return response()->json(array(
-            'file' => '/storage/'. $path,
+            'file' => 'http://localhost:8000/storage/'. $path,
             'success' => true,
-            //'data' => $request->file('file')
         ), 200);
     }
 }
