@@ -48,6 +48,7 @@ Route::prefix('v2/')->middleware('role:admin')->group(function () {
      * Articles
      */
     Route::post('articles/upload', 'ApiV2\Articles\UploadController@upload');
+    Route::post('articles/upload-avatar', 'ApiV2\Articles\UploadController@uploadAvatar');
     Route::resource('articles', 'ApiV2\Articles\HomeController')->only(['index', 'create', 'store', 'destroy']);
 
 

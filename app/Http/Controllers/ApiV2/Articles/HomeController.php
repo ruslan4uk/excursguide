@@ -66,11 +66,13 @@ class HomeController extends Controller
     {
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
+            
         ]);
 
         $service = Article::updateOrCreate(['id' => $request->get('id')], $request->only([
                 'title',
                 'text',
+                'avatar',
                 'country_id',
                 'city_id', 
                 'active'
