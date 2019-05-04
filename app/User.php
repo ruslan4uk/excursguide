@@ -89,6 +89,15 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
+     * Get languages for user data 
+     *
+     * @return void
+     */ 
+    public function languages() {
+        return $this->belongsToMany('App\Language');
+    }
+
+    /**
      * Get comment for user page
      *
      * @return void

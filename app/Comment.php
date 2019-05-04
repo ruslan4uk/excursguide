@@ -25,4 +25,13 @@ class Comment extends Model
     public function userData() {
         return $this->belongsTo('App\UserData', 'user_id', 'user_id');
     }
+
+    /**
+     * Get page user to comment
+     *
+     * @return void
+     */
+    public function pageUser() {
+        return $this->belongsTo('App\User', 'page_id', 'id');
+    }
 }

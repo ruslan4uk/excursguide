@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,16 +16,16 @@ use Illuminate\Http\Request;
  * Auth routes
  * url: /auth/{page}
  */
-Route::prefix('v2/auth/')->group(function () {
-    Route::post('login', 'ApiV2\AuthController@login');
-    Route::post('register', 'ApiV2\AuthController@register');
-    Route::post('logout', 'ApiV2\AuthController@logout');
-    Route::post('refresh', 'ApiV2\AuthController@refresh');
-    Route::post('me', 'ApiV2\AuthController@me');
-    Route::post('payload', 'ApiV2\AuthController@payload');
+Route::prefix('auth/')->group(function () {
+        Route::post('login', 'ApiV2\AuthController@login');
+        Route::post('register', 'ApiV2\AuthController@register');
+        Route::post('logout', 'ApiV2\AuthController@logout');
+        Route::post('refresh', 'ApiV2\AuthController@refresh');
+        Route::post('payload', 'ApiV2\AuthController@payload');
+        Route::post('me', 'ApiV2\AuthController@me');
 });
 
-Route::prefix('v2/')->middleware('role:admin')->group(function () {    
+Route::prefix('')->middleware(['role:admin', 'auth:api'])->group(function () {    
     
     Route::prefix('dashboard/')->group(function () {
         Route::get('index', 'ApiV2\Dashboard\HomeController@index');
@@ -51,6 +50,16 @@ Route::prefix('v2/')->middleware('role:admin')->group(function () {
     Route::post('articles/upload-avatar', 'ApiV2\Articles\UploadController@uploadAvatar');
     Route::resource('articles', 'ApiV2\Articles\HomeController')->only(['index', 'create', 'store', 'destroy']);
 
+
+    /**
+     * Guides
+     */
+    Route::resource('guides', 'ApiV2\Guides\HomeController')->only(['index', 'store', 'show', 'delete']);
+
+    /**
+     * Comments
+     */
+    Route::resource('comments', 'ApiV2\Comments\HomeController')->only(['index', 'store', 'show', 'delete']);
 
     /**
      * Search

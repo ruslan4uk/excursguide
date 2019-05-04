@@ -54,7 +54,7 @@ class AuthController extends Controller
                 'name' => $user->name,
             ]);
 
-            $token = Auth::attempt($request->only(['email','password']));
+            $token = Auth::guard('api')->attempt($request->only(['email','password']));
 
             return response()->json([
                 'success' => true,
@@ -72,7 +72,7 @@ class AuthController extends Controller
     {
         $credentials = request(['email', 'password']);
 
-        if (! $token = Auth::attempt($credentials)) {
+        if (! $token = Auth::guard('api')->attempt($credentials)) {
             return response()->json([
                 'success' => false,
                 'errors' => [
@@ -81,7 +81,7 @@ class AuthController extends Controller
             ], 422);
         }  
         
-        if (!Auth::user()->isAdmin()){
+        if (!Auth::guard('api')->user()->isAdmin()){
             return response()->json([
                 'success' => false,
                 'errors' => [
@@ -92,11 +92,11 @@ class AuthController extends Controller
             //return $this->respondWithToken($token);
             return response()->json([
                 'success' => true,
-                'data' => Auth::user(),
+                'data' => Auth::guard('api')->user(),
                 'token' => [
                     'access_token' => $token,
                     'token_type' => 'bearer',
-                    'expires_in' => auth()->factory()->getTTL() * 60
+                    'expires_in' =>Auth::guard('api')->factory()->getTTL() * 60
                 ],
             ], 200);
 
@@ -112,7 +112,7 @@ class AuthController extends Controller
     {
         return response()->json([
             'success' => true,
-            'data' => Auth::user(),
+            'data' => Auth::guard('api')->user(),
         ]);
     }
 
@@ -135,13 +135,13 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        return $this->respondWithToken(auth()->refresh());
+        return $this->respondWithToken(Auth::guard('api')->refresh());
     }
 
 
     public function payload() 
     {
-        return Auth::payload();
+        return Auth::guard('api')->payload();
     }
 
     /**
@@ -156,7 +156,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => Auth::guard('api')->factory()->getTTL() * 60
         ]);
     }
 }

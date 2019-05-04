@@ -13,4 +13,12 @@ class Language extends Model
     protected $casts = [
         'active'         => 'Boolean',
     ];
+
+
+    /**
+     * Many to many languages -> user
+     */
+    public function user() {
+        return $this->belongsToMany('App\User');
+    }
 }

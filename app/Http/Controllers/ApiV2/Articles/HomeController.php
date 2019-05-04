@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\ApiV2\Articles;
 
 use App\Article;
-
+use Storage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -66,7 +66,7 @@ class HomeController extends Controller
     {
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            
+
         ]);
 
         $service = Article::updateOrCreate(['id' => $request->get('id')], $request->only([
@@ -86,40 +86,6 @@ class HomeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -127,7 +93,8 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        if(Article::findOrFail($id)->delete()) {
+        if(Article::findOrFail($id)->delete()
+            && Storage::disk('public')->deleteDirectory('uploads/articles/' . $id)) {
             return response()->json([
                 'success' => true 
             ], 200);

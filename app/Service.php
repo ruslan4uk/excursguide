@@ -18,7 +18,9 @@ class Service extends Model
         return $this->belongsToMany('App\Service');
     }
 
-    // service user
+    /**
+     * Many to many service -> user
+     */
     public function user() {
         return $this->belongsToMany('App\User');
     }
