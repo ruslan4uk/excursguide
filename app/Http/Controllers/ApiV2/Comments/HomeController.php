@@ -40,7 +40,10 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json([
+            'success' => true,
+            'data' => Comment::updateOrCreate(['id' => $request->get('id')], $request->only(['active']))
+        ]);
     }
 
     /**
@@ -85,6 +88,15 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(!$id) {
+            return false;
+        }
+        $comment = Comment::find($id);
+
+        if($comment->delete()) {
+            return response()->json([
+                'success' => true
+            ]);
+        }
     }
 }

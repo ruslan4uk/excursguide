@@ -54,12 +54,12 @@ Route::prefix('')->middleware(['role:admin', 'auth:api'])->group(function () {
     /**
      * Guides
      */
-    Route::resource('guides', 'ApiV2\Guides\HomeController')->only(['index', 'store', 'show', 'delete']);
+    Route::resource('guides', 'ApiV2\Guides\HomeController')->only(['index', 'store', 'show', 'destroy']);
 
     /**
      * Comments
      */
-    Route::resource('comments', 'ApiV2\Comments\HomeController')->only(['index', 'store', 'show', 'delete']);
+    Route::resource('comments', 'ApiV2\Comments\HomeController')->only(['index', 'store', 'show', 'destroy']);
 
     /**
      * Search
